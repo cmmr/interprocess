@@ -1,0 +1,38 @@
+Package: interprocess
+Type: Package
+Title: Mutexes, Semaphores, and Message Queues
+Version: 1.0.0
+Date: 2025-04-29
+Authors@R: c(
+    person(
+      "Daniel P.", "Smith",
+      email   = "dansmith01@gmail.com",
+      role    = c("aut", "cre"),
+      comment = c(ORCID = "0000-0002-2479-2044")),
+    person(
+      "Alkek Center for Metagenomics and Microbiome Research", 
+      role = c("cph", "fnd") ))
+Description: Allows R to access low-level operating system mechanisms for
+    performing atomic operations on shared data structures. Mutexes provide
+    shared and exclusive locks. Semaphores act as counters. Message queues
+    move text strings from one process to another. All these interprocess
+    communication (IPC) tools can optionally block with or without a timeout.
+    Implemented using the cross-platform 'boost' 'C++' library
+    <https://boost.org/libs/interprocess>.
+URL: https://cmmr.github.io/interprocess/, https://github.com/cmmr/interprocess
+BugReports: https://github.com/cmmr/interprocess/issues
+License: MIT + file LICENSE
+Encoding: UTF-8
+RoxygenNote: 7.3.2
+Roxygen: list(markdown = TRUE)
+Config/testthat/edition: 3
+LinkingTo:
+    Rcpp,
+    BH
+Imports:
+    Rcpp
+Suggests:
+    callr,
+    rmarkdown,
+    testthat
+Config/Needs/website: rmarkdown

@@ -1,0 +1,11 @@
+url: https://cmmr.github.io/interprocess/
+
+template:
+  bootstrap: 5
+  bootswatch: darkly
+  theme: breeze-dark
+  bslib:
+    code-bg: "#2b2b2b"
+    base_font: {google: "Noto Sans"}
+    heading_font: {google: "Noto Sans"}
+  
