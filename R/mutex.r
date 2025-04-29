@@ -5,7 +5,7 @@
 #' resources.\cr\cr
 #' An _exclusive lock_ grants permission to one process at a time, for 
 #' example to update the contents of a database file. While an exclusive lock 
-#' is active, no other exclusive locks or shared locks will be granted.\cr\cr
+#' is active, no other exclusive or shared locks will be granted.\cr\cr
 #' Multiple _shared locks_ can be held by different processes at the same 
 #' time, for example to read a database file. While a shared lock is active, no 
 #' exclusive locks will be granted.
@@ -35,7 +35,7 @@
 #'        while waiting for the operation to succeed. Use `0` or `Inf` to 
 #'        return immediately or only when successful, respectively.
 #' 
-#' @param data   A mutex (from `mutex()`).
+#' @param data   A `mutex` object.
 #' 
 #' @param expr   Expression to evaluate if the mutex is acquired.
 #' 
@@ -45,18 +45,22 @@
 #' 
 #' @return
 #' `mutex()` returns a `mutex` object with the following methods:
-#' * `$name` - The created mutex's name (scalar character).
-#' * `$lock(shared = FALSE, timeout_ms = Inf)` - returns `TRUE` if the lock is acquired; `FALSE` if timed out.
-#' * `$unlock(warn = TRUE)` - returns `TRUE` if successful, `FALSE` (with optional warning) if the mutex wasn't locked.
-#' * `$remove()` - returns `TRUE` on success or `FALSE` if the mutex wasn't found.
+#' * `$name`
+#'   - Returns the mutex's name (scalar character).
+#' * `$lock(shared = FALSE, timeout_ms = Inf)`
+#'   - Returns `TRUE` if the lock is acquired, or `FALSE` if the timeout is reached.
+#' * `$unlock(warn = TRUE)`
+#'   - Returns `TRUE` if successful, or `FALSE` (with optional warning) if the mutex wasn't locked.
+#' * `$remove()`
+#'   - Returns `TRUE` on success, or `FALSE` if the mutex wasn't found.
 #' 
-#' `with()` handles the mutex locking/unlocking. Returns `eval(expr)` if the 
-#' lock was acquired; `eval(alt_expr)` if timed out.
+#' \cr
+#' `with()` returns `eval(expr)` if the lock was acquired, or `eval(alt_expr)` if the timeout is reached.
 #' 
 #' 
 #' @section Error Handling:
 #' 
-#' The `with()` wrapper will automatically unlock the mutex if an error stops 
+#' The `with()` wrapper automatically unlocks the mutex if an error stops 
 #' evaluation of `expr`. If you are directly calling `lock()`, be sure that
 #' `unlock()` is registered with error handlers or added to `on.exit()`. 
 #' Otherwise, the lock will persist until the process terminates.
@@ -88,15 +92,14 @@
 #'   alt_expr   = warning('Mutex was locked. Giving up.') )
 #' 
 #' # Directly lock/unlock with safeguards
-#' local({
-#'   if (mut$lock(timeout_ms = 0)) {
+#' if (mut$lock(timeout_ms = 0)) {
+#'   local({
 #'     on.exit(mut$unlock())
 #'     writeLines('more data', tmp)
-#'   } else {
-#'     warning('Mutex was locked. Giving up.')
-#'   }
-#' })
-#' 
+#'   })
+#' } else {
+#'   warning('Mutex was locked. Giving up.')
+#' }
 #' 
 #' mut$remove()
 #' unlink(tmp)

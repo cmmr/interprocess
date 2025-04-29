@@ -38,7 +38,7 @@
 #'        while waiting for the operation to succeed. Use `0` or `Inf` to 
 #'        return immediately or only when successful, respectively.
 #' 
-#' @param data   A message queue (from `queue()`).
+#' @param data   A `queue` object.
 #' 
 #' @param expr   Expression to evaluate if a message is received. The message
 #'        can be accessed by `.` in this context. See examples.
@@ -49,17 +49,24 @@
 #' 
 #' @return
 #' `queue()` returns a `queue` object with the following methods:
-#' * `$name` - The created message queue's name (scalar character).
-#' * `$send(msg, timeout_ms = Inf, priority = 0)`  - Adds a message to the queue. 
-#'    Returns `TRUE` on success; `FALSE` if timed out.
+#' * `$name`
+#'   - Returns the message queue's name (scalar character).
+#' * `$send(msg, timeout_ms = Inf, priority = 0)`
+#'   - Returns `TRUE` on success, or `FALSE` if the timeout is reached.
 #'   - `msg`: The message (scalar character) to add to the message queue.
 #'   - `priority`: Higher priority messages will be retrieved from the queue first. `0` = lowest priority; integers only.
-#' * `$receive(timeout_ms = Inf)` - returns the next message from the queue, or `NULL` if timed out.
-#' * `$count()` - number of messages currently in the queue (scalar integer).
-#' * `$max_count()` - maximum number of messages the queue can hold (scalar integer).
-#' * `$max_nchar()` - maximum number of characters per message (scalar integer).
-#' * `$remove()` - returns `TRUE` on success; `FALSE` on error.
+#' * `$receive(timeout_ms = Inf)`
+#'   - Returns the next message from the queue, or `NULL` if the timeout is reached.
+#' * `$count()`
+#'   - Returns the number of messages currently in the queue (scalar integer).
+#' * `$max_count()`
+#'   - Returns the maximum number of messages the queue can hold (scalar integer).
+#' * `$max_nchar()`
+#'   - Returns the maximum number of characters per message (scalar integer).
+#' * `$remove()`
+#'   - Returns `TRUE` on success, or `FALSE` on error.
 #' 
+#' \cr
 #' `with()` returns `eval(expr)` on success; `eval(alt_expr)` otherwise.
 #' 
 #' @export

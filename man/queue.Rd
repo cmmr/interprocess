@@ -42,7 +42,7 @@ system is restarted.}
 \item{file}{Use a hash of this file/directory path as the queue name. The
 file itself will not be read or modified, and does not need to exist.}
 
-\item{data}{A message queue (from \code{queue()}).}
+\item{data}{A \code{queue} object.}
 
 \item{expr}{Expression to evaluate if a message is received. The message
 can be accessed by \code{.} in this context. See examples.}
@@ -58,20 +58,39 @@ return immediately or only when successful, respectively.}
 \value{
 \code{queue()} returns a \code{queue} object with the following methods:
 \itemize{
-\item \verb{$name} - The created message queue's name (scalar character).
-\item \verb{$send(msg, timeout_ms = Inf, priority = 0)}  - Adds a message to the queue.
-Returns \code{TRUE} on success; \code{FALSE} if timed out.
+\item \verb{$name}
 \itemize{
+\item Returns the message queue's name (scalar character).
+}
+\item \verb{$send(msg, timeout_ms = Inf, priority = 0)}
+\itemize{
+\item Returns \code{TRUE} on success, or \code{FALSE} if the timeout is reached.
 \item \code{msg}: The message (scalar character) to add to the message queue.
 \item \code{priority}: Higher priority messages will be retrieved from the queue first. \code{0} = lowest priority; integers only.
 }
-\item \verb{$receive(timeout_ms = Inf)} - returns the next message from the queue, or \code{NULL} if timed out.
-\item \verb{$count()} - number of messages currently in the queue (scalar integer).
-\item \verb{$max_count()} - maximum number of messages the queue can hold (scalar integer).
-\item \verb{$max_nchar()} - maximum number of characters per message (scalar integer).
-\item \verb{$remove()} - returns \code{TRUE} on success; \code{FALSE} on error.
+\item \verb{$receive(timeout_ms = Inf)}
+\itemize{
+\item Returns the next message from the queue, or \code{NULL} if the timeout is reached.
+}
+\item \verb{$count()}
+\itemize{
+\item Returns the number of messages currently in the queue (scalar integer).
+}
+\item \verb{$max_count()}
+\itemize{
+\item Returns the maximum number of messages the queue can hold (scalar integer).
+}
+\item \verb{$max_nchar()}
+\itemize{
+\item Returns the maximum number of characters per message (scalar integer).
+}
+\item \verb{$remove()}
+\itemize{
+\item Returns \code{TRUE} on success, or \code{FALSE} on error.
+}
 }
 
+\cr
 \code{with()} returns \code{eval(expr)} on success; \code{eval(alt_expr)} otherwise.
 }
 \description{

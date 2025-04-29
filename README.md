@@ -84,12 +84,11 @@ The semaphore's value can be incremented with `$post()` and decremented with
 `$wait()`. The initial value can also be set in the constructor.
 
 ``` r
-sem <- interprocess::semaphore(name = 'mySemaphore')
+sem <- interprocess::semaphore('mySemaphore', value = 1)
 
 sem$name
 #> [1] "mySemaphore"
 
-sem$post()
 sem$post()
 
 sem$wait(timeout_ms = 0)

@@ -26,7 +26,7 @@ system is restarted.}
 \item{file}{Use a hash of this file/directory path as the mutex name. The
 file itself will not be read or modified, and does not need to exist.}
 
-\item{data}{A mutex (from \code{mutex()}).}
+\item{data}{A \code{mutex} object.}
 
 \item{expr}{Expression to evaluate if the mutex is acquired.}
 
@@ -44,21 +44,33 @@ return immediately or only when successful, respectively.}
 \value{
 \code{mutex()} returns a \code{mutex} object with the following methods:
 \itemize{
-\item \verb{$name} - The created mutex's name (scalar character).
-\item \verb{$lock(shared = FALSE, timeout_ms = Inf)} - returns \code{TRUE} if the lock is acquired; \code{FALSE} if timed out.
-\item \verb{$unlock(warn = TRUE)} - returns \code{TRUE} if successful, \code{FALSE} (with optional warning) if the mutex wasn't locked.
-\item \verb{$remove()} - returns \code{TRUE} on success or \code{FALSE} if the mutex wasn't found.
+\item \verb{$name}
+\itemize{
+\item Returns the mutex's name (scalar character).
+}
+\item \verb{$lock(shared = FALSE, timeout_ms = Inf)}
+\itemize{
+\item Returns \code{TRUE} if the lock is acquired, or \code{FALSE} if the timeout is reached.
+}
+\item \verb{$unlock(warn = TRUE)}
+\itemize{
+\item Returns \code{TRUE} if successful, or \code{FALSE} (with optional warning) if the mutex wasn't locked.
+}
+\item \verb{$remove()}
+\itemize{
+\item Returns \code{TRUE} on success, or \code{FALSE} if the mutex wasn't found.
+}
 }
 
-\code{with()} handles the mutex locking/unlocking. Returns \code{eval(expr)} if the
-lock was acquired; \code{eval(alt_expr)} if timed out.
+\cr
+\code{with()} returns \code{eval(expr)} if the lock was acquired, or \code{eval(alt_expr)} if the timeout is reached.
 }
 \description{
 Mutually exclusive (mutex) locks are used to control access to shared
 resources.\cr\cr
 An \emph{exclusive lock} grants permission to one process at a time, for
 example to update the contents of a database file. While an exclusive lock
-is active, no other exclusive locks or shared locks will be granted.\cr\cr
+is active, no other exclusive or shared locks will be granted.\cr\cr
 Multiple \emph{shared locks} can be held by different processes at the same
 time, for example to read a database file. While a shared lock is active, no
 exclusive locks will be granted.
@@ -66,7 +78,7 @@ exclusive locks will be granted.
 \section{Error Handling}{
 
 
-The \code{with()} wrapper will automatically unlock the mutex if an error stops
+The \code{with()} wrapper automatically unlocks the mutex if an error stops
 evaluation of \code{expr}. If you are directly calling \code{lock()}, be sure that
 \code{unlock()} is registered with error handlers or added to \code{on.exit()}.
 Otherwise, the lock will persist until the process terminates.
@@ -97,15 +109,14 @@ with(mut,
   alt_expr   = warning('Mutex was locked. Giving up.') )
 
 # Directly lock/unlock with safeguards
-local({
-  if (mut$lock(timeout_ms = 0)) {
+if (mut$lock(timeout_ms = 0)) {
+  local({
     on.exit(mut$unlock())
     writeLines('more data', tmp)
-  } else {
-    warning('Mutex was locked. Giving up.')
-  }
-})
-
+  })
+} else {
+  warning('Mutex was locked. Giving up.')
+}
 
 mut$remove()
 unlink(tmp)

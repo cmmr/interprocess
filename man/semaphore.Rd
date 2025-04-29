@@ -29,7 +29,7 @@ operating system is restarted.}
 The file itself will not be read or modified, and does not need to
 exist.}
 
-\item{data}{A semaphore (from \code{semaphore()}).}
+\item{data}{A \code{semaphore} object.}
 
 \item{expr}{Expression to evaluate if a semaphore is posted.}
 
@@ -44,13 +44,26 @@ return immediately or only when successful, respectively.}
 \value{
 \code{semaphore()} returns a \code{semaphore} object with the following methods:
 \itemize{
-\item \verb{$name} - The created semaphore's name (scalar character).
-\item \verb{$post()} - returns \code{TRUE} on successful increment or \code{FALSE} on error.
-\item \verb{$wait()} - returns \code{TRUE} if the decrement was successful or \code{FALSE} otherwise.
-\item \verb{$remove()} - returns \code{TRUE} on success or \code{FALSE} on error.
+\item \verb{$name}
+\itemize{
+\item Returns the semaphore's name (scalar character).
+}
+\item \verb{$post()}
+\itemize{
+\item Returns \code{TRUE} on successful increment or \code{FALSE} on error.
+}
+\item \verb{$wait(timeout_ms = Inf)}
+\itemize{
+\item Returns \code{TRUE} if the decrement was successful, or \code{FALSE} if the timeout is reached.
+}
+\item \verb{$remove()}
+\itemize{
+\item Returns \code{TRUE} on success or \code{FALSE} on error.
+}
 }
 
-\code{with()} returns \code{eval(expr)} on success; \code{eval(alt_expr)} otherwise.
+\cr
+\code{with()} returns \code{eval(expr)} on success, or \code{eval(alt_expr)} if the timeout is reached.
 }
 \description{
 A semaphore is an integer that the operating system keeps track of. Any

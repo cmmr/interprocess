@@ -40,7 +40,7 @@
 #'        while waiting for the operation to succeed. Use `0` or `Inf` to 
 #'        return immediately or only when successful, respectively.
 #' 
-#' @param data   A semaphore (from `semaphore()`).
+#' @param data   A `semaphore` object.
 #' 
 #' @param expr   Expression to evaluate if a semaphore is posted.
 #' 
@@ -50,12 +50,17 @@
 #' 
 #' @return
 #' `semaphore()` returns a `semaphore` object with the following methods:
-#' * `$name` - The created semaphore's name (scalar character).
-#' * `$post()` - returns `TRUE` on successful increment or `FALSE` on error.
-#' * `$wait()` - returns `TRUE` if the decrement was successful or `FALSE` otherwise.
-#' * `$remove()` - returns `TRUE` on success or `FALSE` on error.
+#' * `$name`
+#'   - Returns the semaphore's name (scalar character).
+#' * `$post()`
+#'   - Returns `TRUE` if the increment was successful, or `FALSE` on error.
+#' * `$wait(timeout_ms = Inf)`
+#'   - Returns `TRUE` if the decrement was successful, or `FALSE` if the timeout is reached.
+#' * `$remove()`
+#'   - Returns `TRUE` on success, or `FALSE` on error.
 #' 
-#' `with()` returns `eval(expr)` on success; `eval(alt_expr)` otherwise.
+#' \cr
+#' `with()` returns `eval(expr)` on success, or `eval(alt_expr)` if the timeout is reached.
 #' 
 #' @export
 #' @examples
