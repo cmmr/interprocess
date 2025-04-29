@@ -50,7 +50,7 @@ return immediately or only when successful, respectively.}
 }
 \item \verb{$post()}
 \itemize{
-\item Returns \code{TRUE} on successful increment or \code{FALSE} on error.
+\item Returns \code{TRUE} if the increment was successful, or \code{FALSE} on error.
 }
 \item \verb{$wait(timeout_ms = Inf)}
 \itemize{
@@ -58,7 +58,7 @@ return immediately or only when successful, respectively.}
 }
 \item \verb{$remove()}
 \itemize{
-\item Returns \code{TRUE} on success or \code{FALSE} on error.
+\item Returns \code{TRUE} on success, or \code{FALSE} on error.
 }
 }
 

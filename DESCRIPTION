@@ -1,7 +1,7 @@
 Package: interprocess
 Type: Package
 Title: Mutexes, Semaphores, and Message Queues
-Version: 1.0.0
+Version: 0.0.9000
 Date: 2025-04-29
 Authors@R: c(
     person(
@@ -10,7 +10,7 @@ Authors@R: c(
       role    = c("aut", "cre"),
       comment = c(ORCID = "0000-0002-2479-2044")),
     person(
-      "Alkek Center for Metagenomics and Microbiome Research", 
+      "Alkek Center for Metagenomics and Microbiome Research",
       role = c("cph", "fnd") ))
 Description: Allows R to access low-level operating system mechanisms for
     performing atomic operations on shared data structures. Mutexes provide
@@ -26,6 +26,7 @@ Encoding: UTF-8
 RoxygenNote: 7.3.2
 Roxygen: list(markdown = TRUE)
 Config/testthat/edition: 3
+Config/Needs/website: rmarkdown
 LinkingTo:
     Rcpp,
     BH
@@ -33,6 +34,4 @@ Imports:
     Rcpp
 Suggests:
     callr,
-    rmarkdown,
     testthat
-Config/Needs/website: rmarkdown
