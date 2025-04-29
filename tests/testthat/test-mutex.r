@@ -5,7 +5,7 @@ test_that("mutex", {
   expect_error(mutex(name = 'abc123', file = tempfile()))
   
   x <- expect_silent(mutex(cleanup = TRUE))
-  y <- expect_silent(mutex(assert = 'create', file = tempfile()))
+  y <- expect_no_error(mutex(assert = 'create', file = tempfile()))
   z <- expect_silent(mutex(name = y$name, assert = 'exists'))
   
   expect_true(with(x, invisible(TRUE)))

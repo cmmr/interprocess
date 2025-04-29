@@ -51,9 +51,9 @@
 #' `queue()` returns a `queue` object with the following methods:
 #' * `$name` - The created message queue's name (scalar character).
 #' * `$send(msg, timeout_ms = Inf, priority = 0)`  - Adds a message to the queue. 
-#'    Returns `TRUE` on success; `FALSE` if timed out.\cr
-#'    `msg`: The message (scalar character) to add to the message queue.\cr
-#'    `priority`: Higher priority messages will be retrieved from the queue first. `0` = lowest priority; integers only.
+#'    Returns `TRUE` on success; `FALSE` if timed out.
+#'   - `msg`: The message (scalar character) to add to the message queue.
+#'   - `priority`: Higher priority messages will be retrieved from the queue first. `0` = lowest priority; integers only.
 #' * `$receive(timeout_ms = Inf)` - returns the next message from the queue, or `NULL` if timed out.
 #' * `$count()` - number of messages currently in the queue (scalar integer).
 #' * `$max_count()` - maximum number of messages the queue can hold (scalar integer).

@@ -60,9 +60,11 @@ return immediately or only when successful, respectively.}
 \itemize{
 \item \verb{$name} - The created message queue's name (scalar character).
 \item \verb{$send(msg, timeout_ms = Inf, priority = 0)}  - Adds a message to the queue.
-Returns \code{TRUE} on success; \code{FALSE} if timed out.\cr
-\code{msg}: The message (scalar character) to add to the message queue.\cr
-\code{priority}: Higher priority messages will be retrieved from the queue first. \code{0} = lowest priority; integers only.
+Returns \code{TRUE} on success; \code{FALSE} if timed out.
+\itemize{
+\item \code{msg}: The message (scalar character) to add to the message queue.
+\item \code{priority}: Higher priority messages will be retrieved from the queue first. \code{0} = lowest priority; integers only.
+}
 \item \verb{$receive(timeout_ms = Inf)} - returns the next message from the queue, or \code{NULL} if timed out.
 \item \verb{$count()} - number of messages currently in the queue (scalar integer).
 \item \verb{$max_count()} - maximum number of messages the queue can hold (scalar integer).

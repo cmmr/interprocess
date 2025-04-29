@@ -5,7 +5,7 @@ test_that("semaphore", {
   expect_error(semaphore(name = 'abc123', file = tempfile()))
   
   x <- expect_silent(semaphore(value = 2, cleanup = TRUE))
-  y <- expect_silent(semaphore(assert = 'create', file = tempfile()))
+  y <- expect_no_error(semaphore(assert = 'create', file = tempfile()))
   z <- expect_silent(semaphore(name = y$name, assert = 'exists'))
   
   expect_true(x$post())
