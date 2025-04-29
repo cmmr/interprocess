@@ -130,7 +130,9 @@ return immediately or only when successful, respectively.</p></dd>
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p><code>queue()</code> returns a <code>queue</code> object with the following methods:</p><ul><li><p><code>$name</code> - The created message queue's name (scalar character).</p></li>
 <li><p><code>$send(msg, timeout_ms = Inf, priority = 0)</code>  - Adds a message to the queue.
-Returns <code>TRUE</code> on success; <code>FALSE</code> if timed out.<br><code>msg</code>: The message (scalar character) to add to the message queue.<br><code>priority</code>: Higher priority messages will be retrieved from the queue first. <code>0</code> = lowest priority; integers only.</p></li>
+Returns <code>TRUE</code> on success; <code>FALSE</code> if timed out.</p><ul><li><p><code>msg</code>: The message (scalar character) to add to the message queue.</p></li>
+<li><p><code>priority</code>: Higher priority messages will be retrieved from the queue first. <code>0</code> = lowest priority; integers only.</p></li>
+</ul></li>
 <li><p><code>$receive(timeout_ms = Inf)</code> - returns the next message from the queue, or <code>NULL</code> if timed out.</p></li>
 <li><p><code>$count()</code> - number of messages currently in the queue (scalar integer).</p></li>
 <li><p><code>$max_count()</code> - maximum number of messages the queue can hold (scalar integer).</p></li>
@@ -144,7 +146,7 @@ Returns <code>TRUE</code> on success; <code>FALSE</code> if timed out.<br><code>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">mq</span> <span class="op">&lt;-</span> <span class="fu">interprocess</span><span class="fu">::</span><span class="fu">queue</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">mq</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;queue&gt; "acIib4jYljb2eR"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;queue&gt; "acGdb4j0ehaRKC"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">mq</span><span class="op">$</span><span class="fu">send</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">'my favorite number is'</span>, <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">floor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span> <span class="op">*</span> <span class="fl">100</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">mq</span><span class="op">$</span><span class="fu">count</span><span class="op">(</span><span class="op">)</span></span></span>
