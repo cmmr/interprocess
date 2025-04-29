@@ -64,9 +64,8 @@
 #' * `$max_nchar()`
 #'   - Returns the maximum number of characters per message (scalar integer).
 #' * `$remove()`
-#'   - Returns `TRUE` on success, or `FALSE` on error.
+#'   - Returns `TRUE` on success, or `FALSE` on error.\cr\cr
 #' 
-#' \cr
 #' `with()` returns `eval(expr)` on success; `eval(alt_expr)` otherwise.
 #' 
 #' @export

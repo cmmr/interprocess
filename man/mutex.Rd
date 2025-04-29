@@ -58,11 +58,10 @@ return immediately or only when successful, respectively.}
 }
 \item \verb{$remove()}
 \itemize{
-\item Returns \code{TRUE} on success, or \code{FALSE} if the mutex wasn't found.
+\item Returns \code{TRUE} on success, or \code{FALSE} if the mutex wasn't found.\cr\cr
 }
 }
 
-\cr
 \code{with()} returns \code{eval(expr)} if the lock was acquired, or \code{eval(alt_expr)} if the timeout is reached.
 }
 \description{

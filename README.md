@@ -1,7 +1,7 @@
 # interprocess
 
 <!-- badges: start -->
-[![cran](https://www.r-pkg.org/badges/version/interprocess)](https://CRAN.R-project.org/package=interprocess)
+[![cran](https://www.r-pkg.org/badges/version/interprocess)](#)
 [![dev](https://github.com/cmmr/interprocess/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/cmmr/interprocess/actions/workflows/R-CMD-check.yaml)
 [![conda](https://anaconda.org/conda-forge/r-interprocess/badges/version.svg)](https://anaconda.org/conda-forge/r-interprocess)
 [![covr](https://codecov.io/gh/cmmr/interprocess/graph/badge.svg)](https://app.codecov.io/gh/cmmr/interprocess)
@@ -19,7 +19,7 @@ optionally block with or without a timeout.
 Works cross-platform, including Windows, MacOS, and Linux, and can be used to 
 synchronize a mixture of R sessions and other types of processes if needed.
 
-Implemented using the [Boost C++ library](https://boost.org/libs/interprocess).
+Implemented using the [Boost C++ library](https://www.boost.org/doc/libs/release/libs/interprocess/).
 
 
 ## Installation

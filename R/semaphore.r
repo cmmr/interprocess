@@ -57,9 +57,8 @@
 #' * `$wait(timeout_ms = Inf)`
 #'   - Returns `TRUE` if the decrement was successful, or `FALSE` if the timeout is reached.
 #' * `$remove()`
-#'   - Returns `TRUE` on success, or `FALSE` on error.
+#'   - Returns `TRUE` on success, or `FALSE` on error.\cr\cr
 #' 
-#' \cr
 #' `with()` returns `eval(expr)` on success, or `eval(alt_expr)` if the timeout is reached.
 #' 
 #' @export

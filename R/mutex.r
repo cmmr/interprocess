@@ -52,9 +52,8 @@
 #' * `$unlock(warn = TRUE)`
 #'   - Returns `TRUE` if successful, or `FALSE` (with optional warning) if the mutex wasn't locked.
 #' * `$remove()`
-#'   - Returns `TRUE` on success, or `FALSE` if the mutex wasn't found.
+#'   - Returns `TRUE` on success, or `FALSE` if the mutex wasn't found.\cr\cr
 #' 
-#' \cr
 #' `with()` returns `eval(expr)` if the lock was acquired, or `eval(alt_expr)` if the timeout is reached.
 #' 
 #' 

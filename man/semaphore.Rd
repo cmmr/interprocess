@@ -58,11 +58,10 @@ return immediately or only when successful, respectively.}
 }
 \item \verb{$remove()}
 \itemize{
-\item Returns \code{TRUE} on success, or \code{FALSE} on error.
+\item Returns \code{TRUE} on success, or \code{FALSE} on error.\cr\cr
 }
 }
 
-\cr
 \code{with()} returns \code{eval(expr)} on success, or \code{eval(alt_expr)} if the timeout is reached.
 }
 \description{

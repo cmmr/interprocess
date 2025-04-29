@@ -12,13 +12,13 @@ Authors@R: c(
     person(
       "Alkek Center for Metagenomics and Microbiome Research",
       role = c("cph", "fnd") ))
-Description: Allows R to access low-level operating system mechanisms for
+Description: Provides access to low-level operating system mechanisms for
     performing atomic operations on shared data structures. Mutexes provide
     shared and exclusive locks. Semaphores act as counters. Message queues
     move text strings from one process to another. All these interprocess
     communication (IPC) tools can optionally block with or without a timeout.
     Implemented using the cross-platform 'boost' 'C++' library
-    <https://boost.org/libs/interprocess>.
+    <https://www.boost.org/doc/libs/release/libs/interprocess/>.
 URL: https://cmmr.github.io/interprocess/, https://github.com/cmmr/interprocess
 BugReports: https://github.com/cmmr/interprocess/issues
 License: MIT + file LICENSE
