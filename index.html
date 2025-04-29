@@ -13,8 +13,8 @@
 <link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><link href="extra.css" rel="stylesheet">
 <meta property="og:title" content="Mutexes, Semaphores, and Message Queues">
-<meta name="description" content="Allows R to access low-level operating system mechanisms for performing atomic operations on shared data structures. Mutexes provide shared and exclusive locks. Semaphores act as counters. Message queues move text strings from one process to another. All these interprocess communication (IPC) tools can optionally block with or without a timeout. Implemented using the cross-platform boost C++ library &lt;https://boost.org/libs/interprocess&gt;.">
-<meta property="og:description" content="Allows R to access low-level operating system mechanisms for performing atomic operations on shared data structures. Mutexes provide shared and exclusive locks. Semaphores act as counters. Message queues move text strings from one process to another. All these interprocess communication (IPC) tools can optionally block with or without a timeout. Implemented using the cross-platform boost C++ library &lt;https://boost.org/libs/interprocess&gt;.">
+<meta name="description" content="Provides access to low-level operating system mechanisms for performing atomic operations on shared data structures. Mutexes provide shared and exclusive locks. Semaphores act as counters. Message queues move text strings from one process to another. All these interprocess communication (IPC) tools can optionally block with or without a timeout. Implemented using the cross-platform boost C++ library &lt;https://www.boost.org/doc/libs/release/libs/interprocess/&gt;.">
+<meta property="og:description" content="Provides access to low-level operating system mechanisms for performing atomic operations on shared data structures. Mutexes provide shared and exclusive locks. Semaphores act as counters. Message queues move text strings from one process to another. All these interprocess communication (IPC) tools can optionally block with or without a timeout. Implemented using the cross-platform boost C++ library &lt;https://www.boost.org/doc/libs/release/libs/interprocess/&gt;.">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -56,7 +56,7 @@
 <p>The goal of <code>interprocess</code> is to synchronize concurrent R processes.</p>
 <p>Allows R to access low-level operating system mechanisms for performing atomic operations on shared data structures. Mutexes provide shared and exclusive locks. Semaphores act as counters. Message queues move text strings from one process to another. All these interprocess communication (IPC) tools can optionally block with or without a timeout.</p>
 <p>Works cross-platform, including Windows, MacOS, and Linux, and can be used to synchronize a mixture of R sessions and other types of processes if needed.</p>
-<p>Implemented using the <a href="https://boost.org/libs/interprocess" class="external-link">Boost C++ library</a>.</p>
+<p>Implemented using the <a href="https://www.boost.org/doc/libs/release/libs/interprocess/" class="external-link">Boost C++ library</a>.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
@@ -177,7 +177,7 @@
 <div class="dev-status">
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://CRAN.R-project.org/package=interprocess" class="external-link"><img src="https://www.r-pkg.org/badges/version/interprocess" alt="cran"></a></li>
+<li><a href="#"><img src="https://www.r-pkg.org/badges/version/interprocess" alt="cran"></a></li>
 <li><a href="https://github.com/cmmr/interprocess/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/cmmr/interprocess/actions/workflows/R-CMD-check.yaml/badge.svg" alt="dev"></a></li>
 <li><a href="https://anaconda.org/conda-forge/r-interprocess" class="external-link"><img src="https://anaconda.org/conda-forge/r-interprocess/badges/version.svg" alt="conda"></a></li>
 <li><a href="https://app.codecov.io/gh/cmmr/interprocess" class="external-link"><img src="https://codecov.io/gh/cmmr/interprocess/graph/badge.svg" alt="covr"></a></li>
