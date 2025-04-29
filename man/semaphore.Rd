@@ -29,6 +29,8 @@ operating system is restarted.}
 The file itself will not be read or modified, and does not need to
 exist.}
 
+\item{data}{A semaphore (from \code{semaphore()}).}
+
 \item{expr}{Expression to evaluate if a semaphore is posted.}
 
 \item{alt_expr}{Expression to evaluate if \code{timeout_ms} is reached.}

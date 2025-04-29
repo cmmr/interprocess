@@ -18,7 +18,7 @@ validate_name <- function (x, obj) {
     if (nchar(x) > 250)
       err(x, obj, 
           'maximum length is 250 characters\n',
-          'Length received: ', char(x), ' characters' )
+          'Length received: ', nchar(x), ' characters' )
     
     ch <- strsplit(x, '', fixed = TRUE)[[1]]
     

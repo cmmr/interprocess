@@ -58,7 +58,7 @@ or the operating system is restarted.
 ### Mutexes
 
 An exclusive lock is acquired by default. For a shared lock, use 
-`$lock(shared = TRUE)`.
+`shared = TRUE`.
 
 ``` r
 tmp <- tempfile()

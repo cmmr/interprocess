@@ -35,6 +35,8 @@
 #'        while waiting for the operation to succeed. Use `0` or `Inf` to 
 #'        return immediately or only when successful, respectively.
 #' 
+#' @param data   A mutex (from `mutex()`).
+#' 
 #' @param expr   Expression to evaluate if the mutex is acquired.
 #' 
 #' @param alt_expr   Expression to evaluate if `timeout_ms` is reached.

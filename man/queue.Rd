@@ -42,6 +42,8 @@ system is restarted.}
 \item{file}{Use a hash of this file/directory path as the queue name. The
 file itself will not be read or modified, and does not need to exist.}
 
+\item{data}{A message queue (from \code{queue()}).}
+
 \item{expr}{Expression to evaluate if a message is received. The message
 can be accessed by \code{.} in this context. See examples.}
 
@@ -52,17 +54,15 @@ while waiting for the operation to succeed. Use \code{0} or \code{Inf} to
 return immediately or only when successful, respectively.}
 
 \item{...}{Not used.}
-
-\item{msg}{The message (scalar character) to add to the message queue.}
-
-\item{priority}{Higher priority messages will be retrieved from the queue
-first. \code{0} = lowest priority; integers only.}
 }
 \value{
 \code{queue()} returns a \code{queue} object with the following methods:
 \itemize{
 \item \verb{$name} - The created message queue's name (scalar character).
-\item \verb{$send(msg, timeout_ms = Inf, priority = 0)}  - Adds a message to the queue. Returns \code{TRUE} on success; \code{FALSE} if timed out.
+\item \verb{$send(msg, timeout_ms = Inf, priority = 0)}  - Adds a message to the queue.
+Returns \code{TRUE} on success; \code{FALSE} if timed out.\cr
+\code{msg}: The message (scalar character) to add to the message queue.\cr
+\code{priority}: Higher priority messages will be retrieved from the queue first. \code{0} = lowest priority; integers only.
 \item \verb{$receive(timeout_ms = Inf)} - returns the next message from the queue, or \code{NULL} if timed out.
 \item \verb{$count()} - number of messages currently in the queue (scalar integer).
 \item \verb{$max_count()} - maximum number of messages the queue can hold (scalar integer).

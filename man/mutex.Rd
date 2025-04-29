@@ -26,6 +26,8 @@ system is restarted.}
 \item{file}{Use a hash of this file/directory path as the mutex name. The
 file itself will not be read or modified, and does not need to exist.}
 
+\item{data}{A mutex (from \code{mutex()}).}
+
 \item{expr}{Expression to evaluate if the mutex is acquired.}
 
 \item{alt_expr}{Expression to evaluate if \code{timeout_ms} is reached.}

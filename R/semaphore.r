@@ -40,6 +40,8 @@
 #'        while waiting for the operation to succeed. Use `0` or `Inf` to 
 #'        return immediately or only when successful, respectively.
 #' 
+#' @param data   A semaphore (from `semaphore()`).
+#' 
 #' @param expr   Expression to evaluate if a semaphore is posted.
 #' 
 #' @param alt_expr   Expression to evaluate if `timeout_ms` is reached.
