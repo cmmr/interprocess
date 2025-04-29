@@ -77,7 +77,7 @@
 <div class="section level3">
 <h3 id="mutexes">Mutexes<a class="anchor" aria-label="anchor" href="#mutexes"></a>
 </h3>
-<p>An exclusive lock is acquired by default. For a shared lock, use <code>$lock(shared = TRUE)</code>.</p>
+<p>An exclusive lock is acquired by default. For a shared lock, use <code>shared = TRUE</code>.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">mut</span> <span class="op">&lt;-</span> <span class="fu">interprocess</span><span class="fu">::</span><span class="fu"><a href="reference/mutex.html">mutex</a></span><span class="op">(</span>file <span class="op">=</span> <span class="va">tmp</span><span class="op">)</span></span>

@@ -92,6 +92,10 @@ system is restarted.</p></dd>
 file itself will not be read or modified, and does not need to exist.</p></dd>
 
 
+<dt id="arg-data">data<a class="anchor" aria-label="anchor" href="#arg-data"></a></dt>
+<dd><p>A mutex (from <code>mutex()</code>).</p></dd>
+
+
 <dt id="arg-expr">expr<a class="anchor" aria-label="anchor" href="#arg-expr"></a></dt>
 <dd><p>Expression to evaluate if the mutex is acquired.</p></dd>
 
@@ -150,7 +154,7 @@ attempt to acquire a second lock on the same mutex.</p>
 <span class="r-in"><span><span class="va">mut</span> <span class="op">&lt;-</span> <span class="fu">interprocess</span><span class="fu">::</span><span class="fu">mutex</span><span class="op">(</span>file <span class="op">=</span> <span class="va">tmp</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">mut</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;mutex&gt; "agIE2iwsQoq"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;mutex&gt; "mIcu8uQcicS"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Exclusive lock to write the file</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">mut</span>, <span class="fu"><a href="https://rdrr.io/r/base/writeLines.html" class="external-link">writeLines</a></span><span class="op">(</span><span class="st">'some data'</span>, <span class="va">tmp</span><span class="op">)</span><span class="op">)</span></span></span>
