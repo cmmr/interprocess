@@ -3,14 +3,14 @@
 resources.
 An exclusive lock grants permission to one process at a time, for
 example to update the contents of a database file. While an exclusive lock
-is active, no other exclusive locks or shared locks will be granted.
+is active, no other exclusive or shared locks will be granted.
 Multiple shared locks can be held by different processes at the same
 time, for example to read a database file. While a shared lock is active, no
 exclusive locks will be granted."><meta property="og:description" content="Mutually exclusive (mutex) locks are used to control access to shared
 resources.
 An exclusive lock grants permission to one process at a time, for
 example to update the contents of a database file. While an exclusive lock
-is active, no other exclusive locks or shared locks will be granted.
+is active, no other exclusive or shared locks will be granted.
 Multiple shared locks can be held by different processes at the same
 time, for example to read a database file. While a shared lock is active, no
 exclusive locks will be granted."></head><body>
@@ -52,7 +52,7 @@ exclusive locks will be granted."></head><body>
 resources.<br><br>
 An <em>exclusive lock</em> grants permission to one process at a time, for
 example to update the contents of a database file. While an exclusive lock
-is active, no other exclusive locks or shared locks will be granted.<br><br>
+is active, no other exclusive or shared locks will be granted.<br><br>
 Multiple <em>shared locks</em> can be held by different processes at the same
 time, for example to read a database file. While a shared lock is active, no
 exclusive locks will be granted.</p>
@@ -93,7 +93,7 @@ file itself will not be read or modified, and does not need to exist.</p></dd>
 
 
 <dt id="arg-data">data<a class="anchor" aria-label="anchor" href="#arg-data"></a></dt>
-<dd><p>A mutex (from <code>mutex()</code>).</p></dd>
+<dd><p>A <code>mutex</code> object.</p></dd>
 
 
 <dt id="arg-expr">expr<a class="anchor" aria-label="anchor" href="#arg-expr"></a></dt>
@@ -121,19 +121,22 @@ return immediately or only when successful, respectively.</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p><code>mutex()</code> returns a <code>mutex</code> object with the following methods:</p><ul><li><p><code>$name</code> - The created mutex's name (scalar character).</p></li>
-<li><p><code>$lock(shared = FALSE, timeout_ms = Inf)</code> - returns <code>TRUE</code> if the lock is acquired; <code>FALSE</code> if timed out.</p></li>
-<li><p><code>$unlock(warn = TRUE)</code> - returns <code>TRUE</code> if successful, <code>FALSE</code> (with optional warning) if the mutex wasn't locked.</p></li>
-<li><p><code>$remove()</code> - returns <code>TRUE</code> on success or <code>FALSE</code> if the mutex wasn't found.</p></li>
-</ul><p><code><a href="https://rdrr.io/r/base/with.html" class="external-link">with()</a></code> handles the mutex locking/unlocking. Returns <code>eval(expr)</code> if the
-lock was acquired; <code>eval(alt_expr)</code> if timed out.</p>
+    <p><code>mutex()</code> returns a <code>mutex</code> object with the following methods:</p><ul><li><p><code>$name</code></p><ul><li><p>Returns the mutex's name (scalar character).</p></li>
+</ul></li>
+<li><p><code>$lock(shared = FALSE, timeout_ms = Inf)</code></p><ul><li><p>Returns <code>TRUE</code> if the lock is acquired, or <code>FALSE</code> if the timeout is reached.</p></li>
+</ul></li>
+<li><p><code>$unlock(warn = TRUE)</code></p><ul><li><p>Returns <code>TRUE</code> if successful, or <code>FALSE</code> (with optional warning) if the mutex wasn't locked.</p></li>
+</ul></li>
+<li><p><code>$remove()</code></p><ul><li><p>Returns <code>TRUE</code> on success, or <code>FALSE</code> if the mutex wasn't found.</p></li>
+</ul></li>
+</ul><p><br><code><a href="https://rdrr.io/r/base/with.html" class="external-link">with()</a></code> returns <code>eval(expr)</code> if the lock was acquired, or <code>eval(alt_expr)</code> if the timeout is reached.</p>
     </div>
     <div class="section level2">
     <h2 id="error-handling">Error Handling<a class="anchor" aria-label="anchor" href="#error-handling"></a></h2>
 
 
 
-<p>The <code><a href="https://rdrr.io/r/base/with.html" class="external-link">with()</a></code> wrapper will automatically unlock the mutex if an error stops
+<p>The <code><a href="https://rdrr.io/r/base/with.html" class="external-link">with()</a></code> wrapper automatically unlocks the mutex if an error stops
 evaluation of <code>expr</code>. If you are directly calling <code>lock()</code>, be sure that
 <code>unlock()</code> is registered with error handlers or added to <code><a href="https://rdrr.io/r/base/on.exit.html" class="external-link">on.exit()</a></code>.
 Otherwise, the lock will persist until the process terminates.</p>
@@ -154,7 +157,7 @@ attempt to acquire a second lock on the same mutex.</p>
 <span class="r-in"><span><span class="va">mut</span> <span class="op">&lt;-</span> <span class="fu">interprocess</span><span class="fu">::</span><span class="fu">mutex</span><span class="op">(</span>file <span class="op">=</span> <span class="va">tmp</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">mut</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;mutex&gt; "aa0yK6wyuYK"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;mutex&gt; "G8wY820SKcc"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Exclusive lock to write the file</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">mut</span>, <span class="fu"><a href="https://rdrr.io/r/base/writeLines.html" class="external-link">writeLines</a></span><span class="op">(</span><span class="st">'some data'</span>, <span class="va">tmp</span><span class="op">)</span><span class="op">)</span></span></span>
@@ -168,15 +171,14 @@ attempt to acquire a second lock on the same mutex.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "some data"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Directly lock/unlock with safeguards</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/eval.html" class="external-link">local</a></span><span class="op">(</span><span class="op">{</span></span></span>
-<span class="r-in"><span>  <span class="kw">if</span> <span class="op">(</span><span class="va">mut</span><span class="op">$</span><span class="fu">lock</span><span class="op">(</span>timeout_ms <span class="op">=</span> <span class="fl">0</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="va">mut</span><span class="op">$</span><span class="fu">lock</span><span class="op">(</span>timeout_ms <span class="op">=</span> <span class="fl">0</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/eval.html" class="external-link">local</a></span><span class="op">(</span><span class="op">{</span></span></span>
 <span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/base/on.exit.html" class="external-link">on.exit</a></span><span class="op">(</span><span class="va">mut</span><span class="op">$</span><span class="fu">unlock</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/base/writeLines.html" class="external-link">writeLines</a></span><span class="op">(</span><span class="st">'more data'</span>, <span class="va">tmp</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span></span>
-<span class="r-in"><span>    <span class="kw"><a href="https://rdrr.io/r/base/warning.html" class="external-link">warning</a></span><span class="op">(</span><span class="st">'Mutex was locked. Giving up.'</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="op">}</span></span></span>
-<span class="r-in"><span><span class="op">}</span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="op">}</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/warning.html" class="external-link">warning</a></span><span class="op">(</span><span class="st">'Mutex was locked. Giving up.'</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">mut</span><span class="op">$</span><span class="fu">remove</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/unlink.html" class="external-link">unlink</a></span><span class="op">(</span><span class="va">tmp</span><span class="op">)</span></span></span>

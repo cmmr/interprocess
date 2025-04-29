@@ -113,7 +113,7 @@ exist.</p></dd>
 
 
 <dt id="arg-data">data<a class="anchor" aria-label="anchor" href="#arg-data"></a></dt>
-<dd><p>A semaphore (from <code>semaphore()</code>).</p></dd>
+<dd><p>A <code>semaphore</code> object.</p></dd>
 
 
 <dt id="arg-expr">expr<a class="anchor" aria-label="anchor" href="#arg-expr"></a></dt>
@@ -136,11 +136,15 @@ return immediately or only when successful, respectively.</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p><code>semaphore()</code> returns a <code>semaphore</code> object with the following methods:</p><ul><li><p><code>$name</code> - The created semaphore's name (scalar character).</p></li>
-<li><p><code>$post()</code> - returns <code>TRUE</code> on successful increment or <code>FALSE</code> on error.</p></li>
-<li><p><code>$wait()</code> - returns <code>TRUE</code> if the decrement was successful or <code>FALSE</code> otherwise.</p></li>
-<li><p><code>$remove()</code> - returns <code>TRUE</code> on success or <code>FALSE</code> on error.</p></li>
-</ul><p><code><a href="https://rdrr.io/r/base/with.html" class="external-link">with()</a></code> returns <code>eval(expr)</code> on success; <code>eval(alt_expr)</code> otherwise.</p>
+    <p><code>semaphore()</code> returns a <code>semaphore</code> object with the following methods:</p><ul><li><p><code>$name</code></p><ul><li><p>Returns the semaphore's name (scalar character).</p></li>
+</ul></li>
+<li><p><code>$post()</code></p><ul><li><p>Returns <code>TRUE</code> on successful increment or <code>FALSE</code> on error.</p></li>
+</ul></li>
+<li><p><code>$wait(timeout_ms = Inf)</code></p><ul><li><p>Returns <code>TRUE</code> if the decrement was successful, or <code>FALSE</code> if the timeout is reached.</p></li>
+</ul></li>
+<li><p><code>$remove()</code></p><ul><li><p>Returns <code>TRUE</code> on success or <code>FALSE</code> on error.</p></li>
+</ul></li>
+</ul><p><br><code><a href="https://rdrr.io/r/base/with.html" class="external-link">with()</a></code> returns <code>eval(expr)</code> on success, or <code>eval(alt_expr)</code> if the timeout is reached.</p>
     </div>
 
     <div class="section level2">
@@ -148,7 +152,7 @@ return immediately or only when successful, respectively.</p></dd>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">sem</span> <span class="op">&lt;-</span> <span class="fu">interprocess</span><span class="fu">::</span><span class="fu">semaphore</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">sem</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;semaphore&gt; "acHBb4j0okccol"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;semaphore&gt; "acHqb4j1Vfeklp"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">sem</span><span class="op">$</span><span class="fu">post</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">sem</span><span class="op">$</span><span class="fu">wait</span><span class="op">(</span>timeout_ms <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span></span>
