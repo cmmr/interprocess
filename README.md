@@ -1,7 +1,7 @@
 # interprocess
 
 <!-- badges: start -->
-[![cran](https://www.r-pkg.org/badges/version/interprocess)](#)
+[![cran](https://www.r-pkg.org/badges/version/interprocess)](https://CRAN.R-project.org/package=interprocess)
 [![dev](https://github.com/cmmr/interprocess/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/cmmr/interprocess/actions/workflows/R-CMD-check.yaml)
 [![conda](https://anaconda.org/conda-forge/r-interprocess/badges/version.svg)](https://anaconda.org/conda-forge/r-interprocess)
 [![covr](https://codecov.io/gh/cmmr/interprocess/graph/badge.svg)](https://app.codecov.io/gh/cmmr/interprocess)
