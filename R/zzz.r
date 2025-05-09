@@ -4,6 +4,8 @@ ENV <- new.env(parent = emptyenv())
 
 .onLoad <- function (libname, pkgname) {
   
+  ENV$pid          = Sys.getpid()
+  ENV$uid_time     = floor(as.numeric(Sys.time()) * 10000)
   ENV$semaphores   = c()
   ENV$msg_queues   = c()
   ENV$mutexes      = c()
