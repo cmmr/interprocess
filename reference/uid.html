@@ -3,15 +3,15 @@
 mutexes, semaphores, and message queues should start with a letter followed
 by up to 249 alphanumeric characters. These functions generate names meeting
 these requirements.
-uid(): 14-character encoding of PID and microseconds since epoch.
-hash(): 11-character hash of any string (hash space = 2^64).
+uid(): 12-character encoding of PID and time since epoch.
+hash(): 12-character hash of any string (hash space = 2^64).
 
 "><meta property="og:description" content="To ensure broad compatibility across different operating systems, names of
 mutexes, semaphores, and message queues should start with a letter followed
 by up to 249 alphanumeric characters. These functions generate names meeting
 these requirements.
-uid(): 14-character encoding of PID and microseconds since epoch.
-hash(): 11-character hash of any string (hash space = 2^64).
+uid(): 12-character encoding of PID and time since epoch.
+hash(): 12-character hash of any string (hash space = 2^64).
 
 "></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -21,7 +21,7 @@ hash(): 11-character hash of any string (hash space = 2^64).
 
     <a class="navbar-brand me-2" href="../index.html">interprocess</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0.9001</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -51,8 +51,8 @@ hash(): 11-character hash of any string (hash space = 2^64).
     <p>To ensure broad compatibility across different operating systems, names of
 mutexes, semaphores, and message queues should start with a letter followed
 by up to 249 alphanumeric characters. These functions generate names meeting
-these requirements.<br><br></p><ul><li><p><code>uid()</code>: 14-character encoding of PID and microseconds since epoch.</p></li>
-<li><p><code>hash()</code>: 11-character hash of any string (hash space = 2^64).</p></li>
+these requirements.<br><br></p><ul><li><p><code>uid()</code>: 12-character encoding of PID and time since epoch.</p></li>
+<li><p><code>hash()</code>: 12-character hash of any string (hash space = 2^64).</p></li>
 </ul></div>
 
     <div class="section level2">
@@ -75,6 +75,17 @@ these requirements.<br><br></p><ul><li><p><code>uid()</code>: 14-character encod
     <p>A string (scalar character) that can be used as a mutex,
 semaphore, or message queue name.</p>
     </div>
+    <div class="section level2">
+    <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
+    <p><code>uid()</code>s will not collide with a <code>hash()</code>.</p><ul><li><p><code>uid()</code>s never start with <code>'Z'</code>.</p></li>
+<li><p><code>hash()</code>s always start with <code>'Z'</code>.</p></li>
+</ul><p><code>uid()</code>s will not collide with a <code>ps::ps_string()</code>.</p><ul><li><p><code>uid()</code>s are always 12 characters long.</p></li>
+<li><p><code>ps::ps_string()</code>s are always 11 characters long.</p></li>
+</ul><p><code>uid()</code>s will not collide with each other.</p><ul><li><p>The first 4 characters encode the current PID.</p></li>
+<li><p>The last 8 characters encode sequential 1/10000 second intervals that the
+current process was alive. Attempting to generate more than 10,000 UIDs per
+second will cause the process to momentarily sleep.</p></li>
+</ul></div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
@@ -82,7 +93,7 @@ semaphore, or message queue name.</p>
 <span class="r-in"><span>    <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://cmmr.github.io/interprocess/">interprocess</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span>    </span></span>
 <span class="r-in"><span>    <span class="fu">uid</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "acPYe7HuyXHo"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "acMDe7HuWlQ5"</span>
 <span class="r-in"><span>    </span></span>
 <span class="r-in"><span>    <span class="fu">hash</span><span class="op">(</span><span class="st">'192.168.1.123:8011'</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "ZmGUrcriGVSA"</span>
