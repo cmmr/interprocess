@@ -77,7 +77,7 @@
 #' 
 #' sem$remove()
 
-semaphore <- function (name = uid(), assert = NULL, value = 0, cleanup = FALSE, file = NULL) {
+semaphore <- function (name = uid('S'), assert = NULL, value = 0, cleanup = FALSE, file = NULL) {
   
   if (!missing(file)) {
     if (!missing(name)) stop('Provide either `name` or `file`, not both.')

@@ -4,13 +4,17 @@ ENV <- new.env(parent = emptyenv())
 
 .onLoad <- function (libname, pkgname) {
   
-  ENV$pid          = Sys.getpid()
-  ENV$uid_time     = floor(as.numeric(Sys.time()) * 10000)
-  ENV$semaphores   = c()
-  ENV$msg_queues   = c()
-  ENV$mutexes      = c()
-  ENV$excl_locks   = c()
-  ENV$shared_locks = c()
+  map <- c(letters, LETTERS, 0:9)
+  pid <- Sys.getpid()
+  str <- map[1 + c(floor(pid / 62 ^ (3:0)) %% 62)]
+  
+  ENV$pid_code     <- paste(collapse = '', str)
+  ENV$uid_time     <- floor(as.numeric(Sys.time()) * 1000)
+  ENV$semaphores   <- c()
+  ENV$msg_queues   <- c()
+  ENV$mutexes      <- c()
+  ENV$excl_locks   <- c()
+  ENV$shared_locks <- c()
   
   finalizer <- function (e) {
     

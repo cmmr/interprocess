@@ -5,7 +5,13 @@
 \alias{with.semaphore}
 \title{Increment and Decrement an Integer}
 \usage{
-semaphore(name = uid(), assert = NULL, value = 0, cleanup = FALSE, file = NULL)
+semaphore(
+  name = uid("S"),
+  assert = NULL,
+  value = 0,
+  cleanup = FALSE,
+  file = NULL
+)
 
 \method{with}{semaphore}(data, expr, alt_expr = NULL, timeout_ms = Inf, ...)
 }

@@ -5,24 +5,25 @@
 #' mutexes, semaphores, and message queues should start with a letter followed 
 #' by up to 249 alphanumeric characters. These functions generate names meeting 
 #' these requirements.\cr\cr
-#' * `uid()`: 12-character encoding of PID and time since epoch.
-#' * `hash()`: 12-character hash of any string (hash space = 2^64).
+#' * `uid()`: 13-character encoding of PID and time since epoch.
+#' * `hash()`: 11-character hash of any string (hash space = 2^64).
 #' 
-#' `uid()`s will not collide with a `hash()`.
-#' * `uid()`s never start with `'Z'`.
-#' * `hash()`s always start with `'Z'`.
+#' `uid()`s encode sequential millisecond intervals, beginning at the current
+#' process's start time. If the number of requested UIDs exceeds the number of 
+#' milliseconds the process has been alive, then the process will momentarily
+#' sleep before returning.
 #' 
-#' `uid()`s will not collide with a `ps::ps_string()`.
-#' * `uid()`s are always 12 characters long.
-#' * `ps::ps_string()`s are always 11 characters long.
-#' 
-#' `uid()`s will not collide with each other.
-#' * The first 4 characters encode the current PID.
-#' * The last 8 characters encode sequential 1/10000 second intervals that the 
-#' current process was alive. Attempting to generate more than 10,000 UIDs per 
-#' second will cause the process to momentarily sleep.
+#' `uid()`, `hash()`, and `ps::ps_string()` all return strings of different
+#' lengths, thereby preventing unintended collisions.
 #' 
 #' @rdname uid
+#' 
+#' @param prefix   A single letter (a-z or A-Z). The following defaults are 
+#'        used throughout this package:
+#'        * `'M'` - Mutex
+#'        * `'Q'` - Message queue
+#'        * `'S'` - Semaphore
+#'        * `'U'` - General purpose unique id.
 #' 
 #' @param str   A string (scalar character).
 #' 
@@ -39,23 +40,26 @@
 #'     hash('192.168.1.123:8011')
 #'     
 
-uid <- function () {
+uid <- function (prefix = 'U') {
+  
+  stopifnot(is.character(prefix))
+  stopifnot(prefix %in% c(letters, LETTERS))
   
   # Constraints:
-  # - maximum of 10,000 UIDs/second
-  # - time overflows on Nov 22nd, 2661
-  # - PID <= 6,765,201 (std max = 4,194,304)
+  # - maximum of 1,000 UIDs/second
+  # - time overflows on Dec 2nd, 8888
+  # - PID <= 768,369,472 (std max = 4,194,304)
   
   ENV$uid_time <- ENV$uid_time + 1
-  
-  max_time <- floor(as.numeric(Sys.time() + 0.01) * 10000)
-  if (max_time < ENV$uid_time) Sys.sleep(0.001) # nocov
+  if (ENV$uid_time > floor(as.numeric(Sys.time()) * 1000))
+    Sys.sleep(0.001) # nocov
   
   map <- c(letters, LETTERS, 0:9)
   
-  paste(collapse = '', map[1 + c(
-    floor(ENV$pid      / 51 ^ (3:0)) %% 51,
+  str <- paste(collapse = '', map[1 + c(
     floor(ENV$uid_time / 62 ^ (7:0)) %% 62 )])
+  
+  paste0(prefix, ENV$pid_code, str)
 }
 
 
@@ -71,8 +75,9 @@ hash <- function (str) {
   value <- rcpp_hash(str)
   map   <- c(letters, LETTERS, 0:9)
   
+  # first character will always be 'a' - 'u'
   paste(
     collapse = '', 
-    c('Z', map[1 + floor(value / 62 ^ (10:0)) %% 62 ]) )
+    map[1 + floor(value / 62 ^ (10:0)) %% 62 ] )
 }
 
