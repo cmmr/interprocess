@@ -31,7 +31,7 @@ mark."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">interprocess</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0.9001</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -75,7 +75,13 @@ mark.</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">semaphore</span><span class="op">(</span>name <span class="op">=</span> <span class="fu"><a href="uid.html">uid</a></span><span class="op">(</span><span class="op">)</span>, assert <span class="op">=</span> <span class="cn">NULL</span>, value <span class="op">=</span> <span class="fl">0</span>, cleanup <span class="op">=</span> <span class="cn">FALSE</span>, file <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">semaphore</span><span class="op">(</span></span>
+<span>  name <span class="op">=</span> <span class="fu"><a href="uid.html">uid</a></span><span class="op">(</span><span class="st">"S"</span><span class="op">)</span>,</span>
+<span>  assert <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  value <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>  cleanup <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  file <span class="op">=</span> <span class="cn">NULL</span></span>
+<span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># S3 method for class 'semaphore'</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">data</span>, <span class="va">expr</span>, alt_expr <span class="op">=</span> <span class="cn">NULL</span>, timeout_ms <span class="op">=</span> <span class="cn">Inf</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
@@ -152,7 +158,7 @@ return immediately or only when successful, respectively.</p></dd>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">sem</span> <span class="op">&lt;-</span> <span class="fu">interprocess</span><span class="fu">::</span><span class="fu">semaphore</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">sem</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;semaphore&gt; "acMDe7HuWlQ4"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;semaphore&gt; "Sab1taEVbvD1x"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">sem</span><span class="op">$</span><span class="fu">post</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">sem</span><span class="op">$</span><span class="fu">wait</span><span class="op">(</span>timeout_ms <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span></span>
