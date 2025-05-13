@@ -6,7 +6,7 @@
 \title{Send Text Messages Between Processes}
 \usage{
 queue(
-  name = uid("Q"),
+  name = uid(),
   assert = NULL,
   max_count = 100,
   max_nchar = 128,

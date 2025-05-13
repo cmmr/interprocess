@@ -5,7 +5,7 @@
 \alias{with.mutex}
 \title{Shared and Exclusive Locks}
 \usage{
-mutex(name = uid("M"), assert = NULL, cleanup = FALSE, file = NULL)
+mutex(name = uid(), assert = NULL, cleanup = FALSE, file = NULL)
 
 \method{with}{mutex}(data, expr, alt_expr = NULL, shared = FALSE, timeout_ms = Inf, ...)
 }
