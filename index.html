@@ -24,7 +24,7 @@
 
     <a class="navbar-brand me-2" href="index.html">interprocess</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -83,7 +83,7 @@
 <span><span class="va">mut</span> <span class="op">&lt;-</span> <span class="fu">interprocess</span><span class="fu">::</span><span class="fu"><a href="reference/mutex.html">mutex</a></span><span class="op">(</span>file <span class="op">=</span> <span class="va">tmp</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">mut</span><span class="op">$</span><span class="va">name</span></span>
-<span><span class="co">#&gt; [1] "S6qYUQK2SwA"</span></span>
+<span><span class="co">#&gt; [1] "oThd9KRpHb0"</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">mut</span>, <span class="fu"><a href="https://rdrr.io/r/base/writeLines.html" class="external-link">writeLines</a></span><span class="op">(</span><span class="st">'Important Data'</span>, <span class="va">tmp</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
@@ -124,7 +124,7 @@
 <code class="sourceCode R"><span><span class="va">mq</span> <span class="op">&lt;-</span> <span class="fu">interprocess</span><span class="fu">::</span><span class="fu"><a href="reference/queue.html">queue</a></span><span class="op">(</span>max_count <span class="op">=</span> <span class="fl">2</span>, max_nchar <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">mq</span><span class="op">$</span><span class="va">name</span></span>
-<span><span class="co">#&gt; [1] "akRKb4iymMcAFV"</span></span>
+<span><span class="co">#&gt; [1] "Ae2udeRLWcb"</span></span>
 <span></span>
 <span><span class="va">mq</span><span class="op">$</span><span class="fu">send</span><span class="op">(</span><span class="st">'Hello'</span><span class="op">)</span></span>
 <span><span class="va">mq</span><span class="op">$</span><span class="fu">send</span><span class="op">(</span><span class="st">'Hi'</span>, priority <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
