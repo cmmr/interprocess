@@ -4,8 +4,8 @@ ENV <- new.env(parent = emptyenv())
 
 .onLoad <- function (libname, pkgname) {
   
-  ENV$pid_code     <- rcpp_base62(Sys.getpid() + 26 * 62^3, 0, 4)
-  ENV$load_time    <- as.numeric(Sys.time())
+  ENV$pid_base62   <- rcpp_base62(Sys.getpid() + 26 * 62^3, 0, 4)
+  ENV$start_time   <- as.numeric(Sys.time())
   ENV$uids_made    <- 0
   ENV$semaphores   <- c()
   ENV$msg_queues   <- c()

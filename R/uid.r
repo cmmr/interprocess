@@ -13,7 +13,7 @@
 #' 1/100 seconds that the process has been alive, then the process will 
 #' momentarily sleep before returning.
 #' 
-#' `uid()`s begin with `A - R'`; `hash()`s begin with `a - v`.
+#' A `uid()` begins with `A - R`; a `hash()` begins with `a - v`.
 #' 
 #' @rdname uid
 #' 
@@ -39,16 +39,16 @@ uid <- function () {
   # - time overflows on Dec 14th, 3085
   # - PID < 4,194,304 (current std max)
   
-  load_time     <- ENV$load_time
+  start_time    <- ENV$start_time
   curr_time     <- as.numeric(Sys.time())
   ENV$uids_made <- ENV$uids_made + 1
   
-  if (ENV$uids_made / 100 > curr_time - load_time)
+  if (ENV$uids_made / 100 > curr_time - start_time)
     Sys.sleep(0.02) # nocov
   
   paste(collapse = '', c(
-    ENV$pid_code,
-    rcpp_base62(load_time, ENV$uids_made, 7) ))
+    ENV$pid_base62,
+    rcpp_base62(start_time, ENV$uids_made, 7) ))
 }
 
 

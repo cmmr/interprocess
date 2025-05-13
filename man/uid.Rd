@@ -32,7 +32,7 @@ process's start time. If the number of requested UIDs exceeds the number of
 1/100 seconds that the process has been alive, then the process will
 momentarily sleep before returning.
 
-\code{uid()}s begin with \verb{A - R'}; \code{hash()}s begin with \code{a - v}.
+A \code{uid()} begins with \code{A - R}; a \code{hash()} begins with \code{a - v}.
 }
 \examples{
 
