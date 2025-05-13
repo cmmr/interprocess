@@ -86,7 +86,7 @@
 #' 
 #' mq$remove()
 
-queue <- function (name = uid('Q'), assert = NULL, max_count = 100, max_nchar = 128, cleanup = FALSE, file = NULL) {
+queue <- function (name = uid(), assert = NULL, max_count = 100, max_nchar = 128, cleanup = FALSE, file = NULL) {
   
   if (!missing(file)) {
     if (!missing(name)) stop('Provide either `name` or `file`, not both.')

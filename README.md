@@ -65,7 +65,7 @@ tmp <- tempfile()
 mut <- interprocess::mutex(file = tmp)
 
 mut$name
-#> [1] "S6qYUQK2SwA"
+#> [1] "oThd9KRpHb0"
 
 with(mut, writeLines('Important Data', tmp))
 
@@ -114,7 +114,7 @@ memory is allocated for the queue.
 mq <- interprocess::queue(max_count = 2, max_nchar = 5)
 
 mq$name
-#> [1] "akRKb4iymMcAFV"
+#> [1] "Ae2udeRLWcb"
 
 mq$send('Hello')
 mq$send('Hi', priority = 1)

@@ -103,7 +103,7 @@
 #' mut$remove()
 #' unlink(tmp)
 
-mutex <- function (name = uid('M'), assert = NULL, cleanup = FALSE, file = NULL) {
+mutex <- function (name = uid(), assert = NULL, cleanup = FALSE, file = NULL) {
   
   if (!missing(file)) {
     if (!missing(name)) stop('Provide either `name` or `file`, not both.')

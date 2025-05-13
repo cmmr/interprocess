@@ -10,17 +10,6 @@ Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
 Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
 #endif
 
-// rcpp_hash
-std::size_t rcpp_hash(std::string str);
-RcppExport SEXP _interprocess_rcpp_hash(SEXP strSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< std::string >::type str(strSEXP);
-    rcpp_result_gen = Rcpp::wrap(rcpp_hash(str));
-    return rcpp_result_gen;
-END_RCPP
-}
 // rcpp_mutex_create_only
 void rcpp_mutex_create_only(std::string name);
 RcppExport SEXP _interprocess_rcpp_mutex_create_only(SEXP nameSEXP) {
@@ -392,9 +381,32 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// rcpp_base62
+Rcpp::String rcpp_base62(uint64_t value, uint64_t hundredth, int bytes);
+RcppExport SEXP _interprocess_rcpp_base62(SEXP valueSEXP, SEXP hundredthSEXP, SEXP bytesSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< uint64_t >::type value(valueSEXP);
+    Rcpp::traits::input_parameter< uint64_t >::type hundredth(hundredthSEXP);
+    Rcpp::traits::input_parameter< int >::type bytes(bytesSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_base62(value, hundredth, bytes));
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_hash
+Rcpp::String rcpp_hash(std::string str);
+RcppExport SEXP _interprocess_rcpp_hash(SEXP strSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::string >::type str(strSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_hash(str));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_interprocess_rcpp_hash", (DL_FUNC) &_interprocess_rcpp_hash, 1},
     {"_interprocess_rcpp_mutex_create_only", (DL_FUNC) &_interprocess_rcpp_mutex_create_only, 1},
     {"_interprocess_rcpp_mutex_open_only", (DL_FUNC) &_interprocess_rcpp_mutex_open_only, 1},
     {"_interprocess_rcpp_mutex_open_create", (DL_FUNC) &_interprocess_rcpp_mutex_open_create, 1},
@@ -428,6 +440,8 @@ static const R_CallMethodDef CallEntries[] = {
     {"_interprocess_rcpp_sem_wait", (DL_FUNC) &_interprocess_rcpp_sem_wait, 1},
     {"_interprocess_rcpp_sem_try_wait", (DL_FUNC) &_interprocess_rcpp_sem_try_wait, 1},
     {"_interprocess_rcpp_sem_timed_wait", (DL_FUNC) &_interprocess_rcpp_sem_timed_wait, 2},
+    {"_interprocess_rcpp_base62", (DL_FUNC) &_interprocess_rcpp_base62, 3},
+    {"_interprocess_rcpp_hash", (DL_FUNC) &_interprocess_rcpp_hash, 1},
     {NULL, NULL, 0}
 };
 

@@ -4,12 +4,9 @@ ENV <- new.env(parent = emptyenv())
 
 .onLoad <- function (libname, pkgname) {
   
-  map <- c(letters, LETTERS, 0:9)
-  pid <- Sys.getpid()
-  str <- map[1 + c(floor(pid / 62 ^ (3:0)) %% 62)]
-  
-  ENV$pid_code     <- paste(collapse = '', str)
-  ENV$uid_time     <- floor(as.numeric(Sys.time()) * 1000)
+  ENV$pid_code     <- rcpp_base62(Sys.getpid() + 26 * 62^3, 0, 4)
+  ENV$load_time    <- as.numeric(Sys.time())
+  ENV$uids_made    <- 0
   ENV$semaphores   <- c()
   ENV$msg_queues   <- c()
   ENV$mutexes      <- c()
