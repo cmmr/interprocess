@@ -114,11 +114,13 @@ mutex <- function (name = uid(), assert = NULL, cleanup = FALSE, file = NULL) {
   assert  <- validate_assert(assert, 'mutex')
   cleanup <- validate_bool(cleanup,  'mutex')
   
-  switch(
-    EXPR = assert,
-    'create' = rcpp_mutex_create_only(name),
-    'exists' = rcpp_mutex_open_only(name),
-    'NULL'   = rcpp_mutex_open_create(name) )
+  tryCatch(
+    error = function (e) open_error('mutex', name, assert, e),
+    expr  = switch(
+      EXPR = assert,
+      'create' = rcpp_mutex_create_only(name),
+      'exists' = rcpp_mutex_open_only(name),
+      'NULL'   = rcpp_mutex_open_create(name) ))
   
   if (isTRUE(cleanup))
     ENV$mutexes <- c(ENV$mutexes, name)

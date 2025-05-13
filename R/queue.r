@@ -99,11 +99,13 @@ queue <- function (name = uid(), assert = NULL, max_count = 100, max_nchar = 128
   max_nchar <- validate_uint(max_nchar, 'queue')
   cleanup   <- validate_bool(cleanup,   'queue')
   
-  switch(
-    EXPR = assert,
-    'create' = rcpp_queue_create_only(name, max_count, max_nchar),
-    'exists' = rcpp_queue_open_only(name),
-    'NULL'   = rcpp_queue_open_create(name, max_count, max_nchar) )
+  tryCatch(
+    error = function (e) open_error('message queue', name, assert, e),
+    expr  = switch(
+      EXPR = assert,
+      'create' = rcpp_queue_create_only(name, max_count, max_nchar),
+      'exists' = rcpp_queue_open_only(name),
+      'NULL'   = rcpp_queue_open_create(name, max_count, max_nchar) ))
   
   if (isTRUE(cleanup))
     ENV$msg_queues <- c(ENV$msg_queues, name)

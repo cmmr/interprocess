@@ -89,11 +89,14 @@ semaphore <- function (name = uid(), assert = NULL, value = 0, cleanup = FALSE, 
   assert  <- validate_assert(assert, 'semaphore')
   cleanup <- validate_bool(cleanup,  'semaphore')
   
-  switch(
-    EXPR = assert,
-    'create' = rcpp_sem_create_only(name, value),
-    'exists' = rcpp_sem_open_only(name),
-    'NULL'   = rcpp_sem_open_create(name, value) )
+  tryCatch(
+    error = function (e) open_error('semaphore', name, assert, e),
+    expr  = switch(
+      EXPR = assert,
+      'create' = rcpp_sem_create_only(name, value),
+      'exists' = rcpp_sem_open_only(name),
+      'NULL'   = rcpp_sem_open_create(name, value) ))
+  
   
   if (isTRUE(cleanup))
     ENV$semaphores <- c(ENV$semaphores, name)
