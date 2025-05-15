@@ -17,7 +17,7 @@ process to another. All these interprocess communication (IPC) tools can
 optionally block with or without a timeout.
 
 Works cross-platform, including Windows, MacOS, and Linux, and can be used to 
-synchronize a mixture of R sessions and other types of processes if needed.
+synchronize a mixture of R sessions and other types of processes.
 
 Implemented using the [Boost C++ library](https://www.boost.org/doc/libs/release/libs/interprocess/).
 
@@ -57,8 +57,8 @@ or the operating system is restarted.
 
 ### Mutexes
 
-An exclusive lock is acquired by default. For a shared lock, use 
-`shared = TRUE`.
+An exclusive advisory lock is acquired by default. For a shared lock, use 
+`shared = TRUE`. Set `file = <path>` to use a filepath hash for the name.
 
 ``` r
 tmp <- tempfile()

@@ -23,12 +23,23 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - {os: windows-latest,  r: 'devel', http-user-agent: 'release'}
-          - {os: ubuntu-latest,   r: 'devel', http-user-agent: 'release'}
-          - {os: macos-latest,    r: 'release'}
-          - {os: windows-latest,  r: 'release'}
-          - {os: ubuntu-latest,   r: 'release'}
-          - {os: ubuntu-latest,   r: 'oldrel-4'}
+          - {os: macos-15,         r: 'devel'}
+          - {os: macos-latest,     r: 'devel'}
+          - {os: macos-latest,     r: 'release'}
+
+          - {os: windows-latest,   r: 'devel', http-user-agent: 'release'}
+          - {os: windows-latest,   r: 'release'}
+          - {os: windows-latest,   r: 'oldrel-4'}
+          - {os: windows-latest,   r: '3.6.3'}
+
+          - {os: ubuntu-latest,    r: 'devel' }
+          - {os: ubuntu-22.04-arm, r: 'release' }
+          - {os: ubuntu-24.04-arm, r: 'release' }
+          - {os: ubuntu-latest,    r: 'release'}
+          - {os: ubuntu-latest,    r: 'oldrel-1'}
+          - {os: ubuntu-latest,    r: 'oldrel-2'}
+          - {os: ubuntu-latest,    r: 'oldrel-3'}
+          - {os: ubuntu-latest,    r: 'oldrel-4'}
 
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}

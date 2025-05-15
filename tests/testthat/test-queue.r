@@ -46,5 +46,17 @@ test_that("queue", {
   expect_null(     callr::r(f, list(nm = mq$name)))
   
   expect_true(mq$remove())
+  
+  
+  # cleanup works
+  nm <- callr::r(\() interprocess::queue(cleanup = TRUE)$name)
+  mq <- expect_silent(interprocess::queue(name = nm, assert = 'create'))
+  expect_true(mq$remove())
+  
+  # persistence works
+  nm <- callr::r(\() interprocess::queue(cleanup = FALSE)$name)
+  mq <- expect_silent(interprocess::queue(name = nm, assert = 'exists'))
+  expect_true(mq$remove())
+  
 })
 

@@ -2,7 +2,7 @@ Package: interprocess
 Type: Package
 Title: Mutexes, Semaphores, and Message Queues
 Version: 1.1.4
-Date: 2025-05-13
+Date: 2025-05-15
 Authors@R: c(
     person(
       "Daniel P.", "Smith",

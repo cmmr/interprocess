@@ -33,23 +33,47 @@ test_that("mutex", {
   
   mut <- expect_silent(mutex())
   f <- function (nm, shr) {
-    m <- interprocess::mutex(name = nm)
+    m <- interprocess::mutex(name = nm, assert = 'exists')
     return (with(m, TRUE, FALSE, shared = shr, timeout_ms = 0))
   }
   
+  # Use a mutex created by another process.
   expect_true(callr::r(f, list(nm = mut$name, shr = TRUE)))
   expect_true(callr::r(f, list(nm = mut$name, shr = FALSE)))
   
+  # Interact with a locked (shared) mutex.
   with(mut, shared = TRUE, {
     expect_true( callr::r(f, list(nm = mut$name, shr = TRUE)))
     expect_false(callr::r(f, list(nm = mut$name, shr = FALSE)))
   })
   
+  # Interact with a locked (exclusive) mutex.
   with(mut, shared = FALSE, {
     expect_false(callr::r(f, list(nm = mut$name, shr = TRUE)))
     expect_false(callr::r(f, list(nm = mut$name, shr = FALSE)))
   })
   
+  # Mutex unlocked on process exit
+  g <- function (nm, shr) {
+    m <- interprocess::mutex(name = nm, assert = 'exists')
+    return (m$lock(shared = shr, timeout_ms = 0))
+  }
+  expect_true(callr::r(g, list(nm = mut$name, shr = TRUE)))
+  expect_true(with(mut, TRUE, FALSE, timeout_ms = 0))
+  expect_true(callr::r(g, list(nm = mut$name, shr = FALSE)))
+  expect_true(with(mut, TRUE, FALSE, timeout_ms = 0))
+  
+  expect_true(mut$remove())
+  
+  
+  # cleanup works
+  nm  <- callr::r(\() interprocess::mutex(cleanup = TRUE)$name)
+  mut <- expect_silent(interprocess::mutex(name = nm, assert = 'create'))
+  expect_true(mut$remove())
+  
+  # persistence works
+  nm  <- callr::r(\() interprocess::mutex(cleanup = FALSE)$name)
+  mut <- expect_silent(interprocess::mutex(name = nm, assert = 'exists'))
   expect_true(mut$remove())
   
 })
