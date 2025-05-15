@@ -39,12 +39,12 @@ test_that("semaphore", {
   
   
   # cleanup works
-  nm  <- callr::r(\() interprocess::semaphore(cleanup = TRUE)$name)
+  nm  <- callr::r(function () interprocess::semaphore(cleanup = TRUE)$name)
   sem <- expect_silent(interprocess::semaphore(name = nm, assert = 'create'))
   expect_true(sem$remove())
   
   # persistence works
-  nm  <- callr::r(\() interprocess::semaphore(cleanup = FALSE)$name)
+  nm  <- callr::r(function () interprocess::semaphore(cleanup = FALSE)$name)
   sem <- expect_silent(interprocess::semaphore(name = nm, assert = 'exists'))
   expect_true(sem$remove())
   

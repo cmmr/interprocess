@@ -67,12 +67,12 @@ test_that("mutex", {
   
   
   # cleanup works
-  nm  <- callr::r(\() interprocess::mutex(cleanup = TRUE)$name)
+  nm  <- callr::r(function () interprocess::mutex(cleanup = TRUE)$name)
   mut <- expect_silent(interprocess::mutex(name = nm, assert = 'create'))
   expect_true(mut$remove())
   
   # persistence works
-  nm  <- callr::r(\() interprocess::mutex(cleanup = FALSE)$name)
+  nm  <- callr::r(function () interprocess::mutex(cleanup = FALSE)$name)
   mut <- expect_silent(interprocess::mutex(name = nm, assert = 'exists'))
   expect_true(mut$remove())
   
