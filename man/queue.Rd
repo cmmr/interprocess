@@ -86,7 +86,7 @@ return immediately or only when successful, respectively.}
 }
 \item \verb{$remove()}
 \itemize{
-\item Returns \code{TRUE} on success, or \code{FALSE} on error.\cr\cr
+\item Returns \code{TRUE} if the queue was successfully deleted from the operating system, or \code{FALSE} on error.\cr\cr
 }
 }
 
@@ -97,7 +97,7 @@ An interprocess queue that ensures each message is delivered to only one
 reader, at which time the message is removed from the queue. Ideal for
 producer/consumer situations where the message defines work waiting to be
 processed. The message itself can be any scalar character, for example, a
-JSON string, path to an RDS file, or a simple command like 'exit'.
+JSON string or path to an RDS file.
 }
 \examples{
 
@@ -116,3 +116,9 @@ with(mq, paste('got message:', .), 'no messages', timeout_ms = 0)
 
 mq$remove()
 }
+\seealso{
+Other shared objects: 
+\code{\link{mutex}()},
+\code{\link{semaphore}()}
+}
+\concept{shared objects}

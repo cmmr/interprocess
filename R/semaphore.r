@@ -16,6 +16,7 @@
 #' mark.
 #' 
 #' 
+#' @family shared objects
 #' @rdname semaphore
 #' 
 #' @param name    Unique ID. Alphanumeric, starting with a letter.
@@ -57,7 +58,7 @@
 #' * `$wait(timeout_ms = Inf)`
 #'   - Returns `TRUE` if the decrement was successful, or `FALSE` if the timeout is reached.
 #' * `$remove()`
-#'   - Returns `TRUE` on success, or `FALSE` on error.\cr\cr
+#'   - Returns `TRUE` if the semaphore was successfully deleted from the operating system, or `FALSE` on error.\cr\cr
 #' 
 #' `with()` returns `eval(expr)` on success, or `eval(alt_expr)` if the timeout is reached.
 #' 

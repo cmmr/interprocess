@@ -10,7 +10,11 @@
 #' time, for example to read a database file. While a shared lock is active, no 
 #' exclusive locks will be granted.
 #' 
+#' The operating system ensures that mutex locks are released when a process 
+#' exits.
 #' 
+#' 
+#' @family shared objects
 #' @rdname mutex
 #' 
 #' @param name    Unique ID. Alphanumeric, starting with a letter.
@@ -50,9 +54,9 @@
 #' * `$lock(shared = FALSE, timeout_ms = Inf)`
 #'   - Returns `TRUE` if the lock is acquired, or `FALSE` if the timeout is reached.
 #' * `$unlock(warn = TRUE)`
-#'   - Returns `TRUE` if successful, or `FALSE` (with optional warning) if the mutex wasn't locked.
+#'   - Returns `TRUE` if successful, or `FALSE` (with optional warning) if the mutex wasn't locked by this process.
 #' * `$remove()`
-#'   - Returns `TRUE` on success, or `FALSE` if the mutex wasn't found.\cr\cr
+#'   - Returns `TRUE` if the mutex was successfully deleted from the operating system, or `FALSE` on error.\cr\cr
 #' 
 #' `with()` returns `eval(expr)` if the lock was acquired, or `eval(alt_expr)` if the timeout is reached.
 #' 

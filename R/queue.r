@@ -5,9 +5,10 @@
 #' reader, at which time the message is removed from the queue. Ideal for 
 #' producer/consumer situations where the message defines work waiting to be 
 #' processed. The message itself can be any scalar character, for example, a 
-#' JSON string, path to an RDS file, or a simple command like 'exit'.
+#' JSON string or path to an RDS file.
 #' 
 #' 
+#' @family shared objects
 #' @rdname queue
 #' 
 #' @param name    Unique ID. Alphanumeric, starting with a letter.
@@ -64,7 +65,7 @@
 #' * `$max_nchar()`
 #'   - Returns the maximum number of characters per message (scalar integer).
 #' * `$remove()`
-#'   - Returns `TRUE` on success, or `FALSE` on error.\cr\cr
+#'   - Returns `TRUE` if the queue was successfully deleted from the operating system, or `FALSE` on error.\cr\cr
 #' 
 #' `with()` returns `eval(expr)` on success; `eval(alt_expr)` otherwise.
 #' 

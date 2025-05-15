@@ -58,7 +58,7 @@ return immediately or only when successful, respectively.}
 }
 \item \verb{$remove()}
 \itemize{
-\item Returns \code{TRUE} on success, or \code{FALSE} on error.\cr\cr
+\item Returns \code{TRUE} if the semaphore was successfully deleted from the operating system, or \code{FALSE} on error.\cr\cr
 }
 }
 
@@ -94,3 +94,9 @@ with(sem, 'success', 'timed out', timeout_ms = 0)
 
 sem$remove()
 }
+\seealso{
+Other shared objects: 
+\code{\link{mutex}()},
+\code{\link{queue}()}
+}
+\concept{shared objects}

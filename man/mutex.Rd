@@ -54,11 +54,11 @@ return immediately or only when successful, respectively.}
 }
 \item \verb{$unlock(warn = TRUE)}
 \itemize{
-\item Returns \code{TRUE} if successful, or \code{FALSE} (with optional warning) if the mutex wasn't locked.
+\item Returns \code{TRUE} if successful, or \code{FALSE} (with optional warning) if the mutex wasn't locked by this process.
 }
 \item \verb{$remove()}
 \itemize{
-\item Returns \code{TRUE} on success, or \code{FALSE} if the mutex wasn't found.\cr\cr
+\item Returns \code{TRUE} if the mutex was successfully deleted from the operating system, or \code{FALSE} on error.\cr\cr
 }
 }
 
@@ -73,6 +73,10 @@ is active, no other exclusive or shared locks will be granted.\cr\cr
 Multiple \emph{shared locks} can be held by different processes at the same
 time, for example to read a database file. While a shared lock is active, no
 exclusive locks will be granted.
+}
+\details{
+The operating system ensures that mutex locks are released when a process
+exits.
 }
 \section{Error Handling}{
 
@@ -120,3 +124,9 @@ if (mut$lock(timeout_ms = 0)) {
 mut$remove()
 unlink(tmp)
 }
+\seealso{
+Other shared objects: 
+\code{\link{queue}()},
+\code{\link{semaphore}()}
+}
+\concept{shared objects}
