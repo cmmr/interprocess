@@ -2,11 +2,13 @@
 
 test_that("queue", {
   
-  expect_error(queue(name = 'abc123', file = tempfile()))
-  
   x <- expect_silent(queue(max_count = 2, cleanup = TRUE))
   y <- expect_no_error(queue(assert = 'create', max_nchar = 1, file = tempfile()))
   z <- expect_silent(queue(name = y$name, assert = 'exists'))
+  
+  expect_error(queue(name = uid(),  file = tempfile()))
+  expect_error(queue(name = uid(),  assert = 'exists'))
+  expect_error(queue(name = x$name, assert = 'create'))
   
   expect_identical(x$max_count(), 2L)
   expect_identical(y$max_nchar(), 1L)

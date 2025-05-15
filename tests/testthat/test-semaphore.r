@@ -2,11 +2,13 @@
 
 test_that("semaphore", {
   
-  expect_error(semaphore(name = 'abc123', file = tempfile()))
-  
   x <- expect_silent(semaphore(value = 2, cleanup = TRUE))
   y <- expect_no_error(semaphore(assert = 'create', file = tempfile()))
   z <- expect_silent(semaphore(name = y$name, assert = 'exists'))
+  
+  expect_error(semaphore(name = uid(),  file = tempfile()))
+  expect_error(semaphore(name = uid(),  assert = 'exists'))
+  expect_error(semaphore(name = x$name, assert = 'create'))
   
   expect_true(x$post())
   expect_true( x$wait(timeout_ms = Inf))
