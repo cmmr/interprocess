@@ -37,7 +37,7 @@ JSON string or path to an RDS file."></head><body>
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Send Text Messages Between Processes</h1>
-      <small class="dont-index">Source: <a href="https://github.com/cmmr/interprocess/blob/master/R/msg_queue.r" class="external-link"><code>R/msg_queue.r</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/cmmr/interprocess/blob/v1.2.0/R/msg_queue.r" class="external-link"><code>R/msg_queue.r</code></a></small>
       <div class="d-none name"><code>msg_queue.Rd</code></div>
     </div>
 
@@ -162,7 +162,7 @@ operating system, or <code>FALSE</code> on error.<br><br></p></li>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">mq</span> <span class="op">&lt;-</span> <span class="fu">interprocess</span><span class="fu">::</span><span class="fu">msg_queue</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">mq</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;msg_queue&gt; "Ab3IdeTTSRN"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;msg_queue&gt; "Ab1HdeTZMab"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">mq</span><span class="op">$</span><span class="fu">send</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">'my favorite number is'</span>, <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">floor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span> <span class="op">*</span> <span class="fl">100</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">mq</span><span class="op">$</span><span class="fu">count</span><span class="op">(</span><span class="op">)</span></span></span>
