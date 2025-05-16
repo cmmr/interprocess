@@ -2,14 +2,14 @@ useDynLib(interprocess, .registration = TRUE)
 import(Rcpp)
 
 export(`mutex`)
-export(`queue`)
+export(`msg_queue`)
 export(`semaphore`)
 
 export(`hash`)
 export(`uid`)
 
 S3method(with, mutex)
-S3method(with, queue)
+S3method(with, msg_queue)
 S3method(with, semaphore)
 
 S3method(as.character, interprocess)

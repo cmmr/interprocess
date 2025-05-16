@@ -32,7 +32,8 @@ process's start time. If the number of requested UIDs exceeds the number of
 1/100 seconds that the process has been alive, then the process will
 momentarily sleep before returning.
 
-A \code{uid()} begins with \code{A - R}; a \code{hash()} begins with \code{a - v}.
+A \code{uid()} begins with an uppercase letter (\code{A - R}); a \code{hash()} begins with
+a lowercase letter (\code{a - v}).
 }
 \examples{
 

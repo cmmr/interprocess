@@ -13,7 +13,8 @@
 #' 1/100 seconds that the process has been alive, then the process will 
 #' momentarily sleep before returning.
 #' 
-#' A `uid()` begins with `A - R`; a `hash()` begins with `a - v`.
+#' A `uid()` begins with an uppercase letter (`A - R`); a `hash()` begins with 
+#' a lowercase letter (`a - v`).
 #' 
 #' @rdname uid
 #' 

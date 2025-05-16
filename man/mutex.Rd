@@ -126,7 +126,7 @@ unlink(tmp)
 }
 \seealso{
 Other shared objects: 
-\code{\link{queue}()},
+\code{\link{msg_queue}()},
 \code{\link{semaphore}()}
 }
 \concept{shared objects}

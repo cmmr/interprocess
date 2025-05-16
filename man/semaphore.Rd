@@ -96,7 +96,7 @@ sem$remove()
 }
 \seealso{
 Other shared objects: 
-\code{\link{mutex}()},
-\code{\link{queue}()}
+\code{\link{msg_queue}()},
+\code{\link{mutex}()}
 }
 \concept{shared objects}

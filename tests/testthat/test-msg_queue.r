@@ -1,14 +1,14 @@
 
 
-test_that("queue", {
+test_that("msg_queue", {
   
-  x <- expect_silent(queue(max_count = 2, cleanup = TRUE))
-  y <- expect_no_error(queue(assert = 'create', max_nchar = 1, file = tempfile()))
-  z <- expect_silent(queue(name = y$name, assert = 'exists'))
+  x <- expect_silent(msg_queue(max_count = 2, cleanup = TRUE))
+  y <- expect_no_error(msg_queue(assert = 'create', max_nchar = 1, file = tempfile()))
+  z <- expect_silent(msg_queue(name = y$name, assert = 'exists'))
   
-  expect_error(queue(name = uid(),  file = tempfile()))
-  expect_error(queue(name = uid(),  assert = 'exists'))
-  expect_error(queue(name = x$name, assert = 'create'))
+  expect_error(msg_queue(name = uid(),  file = tempfile()))
+  expect_error(msg_queue(name = uid(),  assert = 'exists'))
+  expect_error(msg_queue(name = x$name, assert = 'create'))
   
   expect_identical(x$max_count(), 2L)
   expect_identical(y$max_nchar(), 1L)
@@ -38,9 +38,9 @@ test_that("queue", {
   skip_on_cran()
   skip_on_covr()
   
-  mq <- expect_silent(queue(max_count = 1))
+  mq <- expect_silent(msg_queue(max_count = 1))
   f <- function (nm) {
-    q <- interprocess::queue(name = nm)
+    q <- interprocess::msg_queue(name = nm)
     return (q$receive(timeout_ms = 0))
   }
   expect_true(mq$send('abc'))
@@ -51,13 +51,13 @@ test_that("queue", {
   
   
   # cleanup works
-  nm <- callr::r(function () interprocess::queue(cleanup = TRUE)$name)
-  mq <- expect_silent(interprocess::queue(name = nm, assert = 'create'))
+  nm <- callr::r(function () interprocess::msg_queue(cleanup = TRUE)$name)
+  mq <- expect_silent(interprocess::msg_queue(name = nm, assert = 'create'))
   expect_true(mq$remove())
   
   # persistence works
-  nm <- callr::r(function () interprocess::queue(cleanup = FALSE)$name)
-  mq <- expect_silent(interprocess::queue(name = nm, assert = 'exists'))
+  nm <- callr::r(function () interprocess::msg_queue(cleanup = FALSE)$name)
+  mq <- expect_silent(interprocess::msg_queue(name = nm, assert = 'exists'))
   expect_true(mq$remove())
   
 })

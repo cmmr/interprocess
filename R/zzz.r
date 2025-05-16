@@ -17,7 +17,7 @@ ENV <- new.env(parent = emptyenv())
     
     # Remove resources created with cleanup=TRUE
     for (x in e$semaphores) try(silent = TRUE, rcpp_sem_remove(x))
-    for (x in e$msg_queues) try(silent = TRUE, rcpp_queue_remove(x))
+    for (x in e$msg_queues) try(silent = TRUE, rcpp_mq_remove(x))
     for (x in e$mutexes)    try(silent = TRUE, rcpp_mutex_remove(x))
     
     # Remove locks on remaining resources

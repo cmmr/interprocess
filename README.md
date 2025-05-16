@@ -43,7 +43,7 @@ the resource name (a short text string) amongst cooperating processes enables
 communication and synchronization.
 
 These names can be any alphanumeric string that starts with a letter and is no
-longer than 250 characters. The `mutex()`, `semaphore()`, and `queue()` 
+longer than 250 characters. The `mutex()`, `semaphore()`, and `msg_queue()` 
 functions will default to generating a unique identifier, or you can provide a 
 custom or pre-existing one with the `name` parameter. If the resource is 
 associated with a specific file or directory, the `file` parameter can be used 
@@ -108,10 +108,10 @@ sem$remove()
 ### Message Queues
 
 The constructor's `max_count` and `max_nchar` parameters determine how much 
-memory is allocated for the queue.
+memory is allocated for the message queue.
 
 ``` r
-mq <- interprocess::queue(max_count = 2, max_nchar = 5)
+mq <- interprocess::msg_queue(max_count = 2, max_nchar = 5)
 
 mq$name
 #> [1] "Ae2udeRLWcb"

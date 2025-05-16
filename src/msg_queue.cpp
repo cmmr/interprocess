@@ -13,17 +13,17 @@ namespace pt = boost::posix_time;
 /*------------------*/
 
 // [[Rcpp::export]]
-void rcpp_queue_create_only(std::string name, size_t max_num_msg, size_t max_msg_size) {
+void rcpp_mq_create_only(std::string name, size_t max_num_msg, size_t max_msg_size) {
   message_queue(create_only_t(), name.c_str(), max_num_msg, max_msg_size);
 }
 
 // [[Rcpp::export]]
-void rcpp_queue_open_only(std::string name) {
+void rcpp_mq_open_only(std::string name) {
   message_queue(open_only_t(), name.c_str());
 }
 
 // [[Rcpp::export]]
-void rcpp_queue_open_create(std::string name, size_t max_num_msg, size_t max_msg_size) {
+void rcpp_mq_open_create(std::string name, size_t max_num_msg, size_t max_msg_size) {
   message_queue(open_or_create_t(), name.c_str(), max_num_msg, max_msg_size);
 }
 
@@ -34,20 +34,20 @@ void rcpp_queue_open_create(std::string name, size_t max_num_msg, size_t max_msg
 /*---------------------------*/
 
 // [[Rcpp::export]]
-bool rcpp_queue_send(std::string name, std::string msg, unsigned int priority) {
+bool rcpp_mq_send(std::string name, std::string msg, unsigned int priority) {
   message_queue mq(open_only_t(), name.c_str());
   mq.send(msg.data(), msg.size(), priority);
   return true;
 }
 
 // [[Rcpp::export]]
-bool rcpp_queue_try_send(std::string name, std::string msg, unsigned int priority) {
+bool rcpp_mq_try_send(std::string name, std::string msg, unsigned int priority) {
   message_queue mq(open_only_t(), name.c_str());
   return mq.try_send(msg.data(), msg.size(), priority);
 }
 
 // [[Rcpp::export]]
-bool rcpp_queue_timed_send(std::string name, std::string msg, unsigned int priority, long timeout_ms) {
+bool rcpp_mq_timed_send(std::string name, std::string msg, unsigned int priority, long timeout_ms) {
   message_queue mq(open_only_t(), name.c_str());
   pt::ptime timeout = pt::microsec_clock::universal_time() + pt::milliseconds(timeout_ms);
   return mq.timed_send(msg.data(), msg.size(), priority, timeout);
@@ -60,7 +60,7 @@ bool rcpp_queue_timed_send(std::string name, std::string msg, unsigned int prior
 /*--------------------------------*/
 
 // [[Rcpp::export]]
-Rcpp::String rcpp_queue_receive(std::string name) {
+Rcpp::String rcpp_mq_receive(std::string name) {
   
   message_queue mq(open_only_t(), name.c_str());
   
@@ -78,7 +78,7 @@ Rcpp::String rcpp_queue_receive(std::string name) {
 
 
 // [[Rcpp::export]]
-Rcpp::String rcpp_queue_try_receive(std::string name) {
+Rcpp::String rcpp_mq_try_receive(std::string name) {
   
   message_queue mq(open_only_t(), name.c_str());
   
@@ -98,7 +98,7 @@ Rcpp::String rcpp_queue_try_receive(std::string name) {
 
 
 // [[Rcpp::export]]
-Rcpp::String rcpp_queue_timed_receive(std::string name, long timeout_ms) {
+Rcpp::String rcpp_mq_timed_receive(std::string name, long timeout_ms) {
   
   message_queue mq(open_only_t(), name.c_str());
   
@@ -125,19 +125,19 @@ Rcpp::String rcpp_queue_timed_receive(std::string name, long timeout_ms) {
 /*---------------------*/
 
 // [[Rcpp::export]]
-std::size_t rcpp_queue_get_max_msg(std::string name) {
+std::size_t rcpp_mq_get_max_msg(std::string name) {
   message_queue mq(open_only_t(), name.c_str());
   return mq.get_max_msg();
 }
 
 // [[Rcpp::export]]
-std::size_t rcpp_queue_get_max_msg_size(std::string name) {
+std::size_t rcpp_mq_get_max_msg_size(std::string name) {
   message_queue mq(open_only_t(), name.c_str());
   return mq.get_max_msg_size();
 }
 
 // [[Rcpp::export]]
-std::size_t rcpp_queue_get_num_msg(std::string name) {
+std::size_t rcpp_mq_get_num_msg(std::string name) {
   message_queue mq(open_only_t(), name.c_str());
   return mq.get_num_msg();
 }
@@ -150,6 +150,6 @@ std::size_t rcpp_queue_get_num_msg(std::string name) {
 /*------------------*/
 
 // [[Rcpp::export]]
-bool rcpp_queue_remove(std::string name) {
+bool rcpp_mq_remove(std::string name) {
   return message_queue::remove(name.c_str());
 }

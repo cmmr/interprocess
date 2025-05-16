@@ -10,6 +10,158 @@ Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
 Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
 #endif
 
+// rcpp_mq_create_only
+void rcpp_mq_create_only(std::string name, size_t max_num_msg, size_t max_msg_size);
+RcppExport SEXP _interprocess_rcpp_mq_create_only(SEXP nameSEXP, SEXP max_num_msgSEXP, SEXP max_msg_sizeSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::string >::type name(nameSEXP);
+    Rcpp::traits::input_parameter< size_t >::type max_num_msg(max_num_msgSEXP);
+    Rcpp::traits::input_parameter< size_t >::type max_msg_size(max_msg_sizeSEXP);
+    rcpp_mq_create_only(name, max_num_msg, max_msg_size);
+    return R_NilValue;
+END_RCPP
+}
+// rcpp_mq_open_only
+void rcpp_mq_open_only(std::string name);
+RcppExport SEXP _interprocess_rcpp_mq_open_only(SEXP nameSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::string >::type name(nameSEXP);
+    rcpp_mq_open_only(name);
+    return R_NilValue;
+END_RCPP
+}
+// rcpp_mq_open_create
+void rcpp_mq_open_create(std::string name, size_t max_num_msg, size_t max_msg_size);
+RcppExport SEXP _interprocess_rcpp_mq_open_create(SEXP nameSEXP, SEXP max_num_msgSEXP, SEXP max_msg_sizeSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::string >::type name(nameSEXP);
+    Rcpp::traits::input_parameter< size_t >::type max_num_msg(max_num_msgSEXP);
+    Rcpp::traits::input_parameter< size_t >::type max_msg_size(max_msg_sizeSEXP);
+    rcpp_mq_open_create(name, max_num_msg, max_msg_size);
+    return R_NilValue;
+END_RCPP
+}
+// rcpp_mq_send
+bool rcpp_mq_send(std::string name, std::string msg, unsigned int priority);
+RcppExport SEXP _interprocess_rcpp_mq_send(SEXP nameSEXP, SEXP msgSEXP, SEXP prioritySEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::string >::type name(nameSEXP);
+    Rcpp::traits::input_parameter< std::string >::type msg(msgSEXP);
+    Rcpp::traits::input_parameter< unsigned int >::type priority(prioritySEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_mq_send(name, msg, priority));
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_mq_try_send
+bool rcpp_mq_try_send(std::string name, std::string msg, unsigned int priority);
+RcppExport SEXP _interprocess_rcpp_mq_try_send(SEXP nameSEXP, SEXP msgSEXP, SEXP prioritySEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::string >::type name(nameSEXP);
+    Rcpp::traits::input_parameter< std::string >::type msg(msgSEXP);
+    Rcpp::traits::input_parameter< unsigned int >::type priority(prioritySEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_mq_try_send(name, msg, priority));
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_mq_timed_send
+bool rcpp_mq_timed_send(std::string name, std::string msg, unsigned int priority, long timeout_ms);
+RcppExport SEXP _interprocess_rcpp_mq_timed_send(SEXP nameSEXP, SEXP msgSEXP, SEXP prioritySEXP, SEXP timeout_msSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::string >::type name(nameSEXP);
+    Rcpp::traits::input_parameter< std::string >::type msg(msgSEXP);
+    Rcpp::traits::input_parameter< unsigned int >::type priority(prioritySEXP);
+    Rcpp::traits::input_parameter< long >::type timeout_ms(timeout_msSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_mq_timed_send(name, msg, priority, timeout_ms));
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_mq_receive
+Rcpp::String rcpp_mq_receive(std::string name);
+RcppExport SEXP _interprocess_rcpp_mq_receive(SEXP nameSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::string >::type name(nameSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_mq_receive(name));
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_mq_try_receive
+Rcpp::String rcpp_mq_try_receive(std::string name);
+RcppExport SEXP _interprocess_rcpp_mq_try_receive(SEXP nameSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::string >::type name(nameSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_mq_try_receive(name));
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_mq_timed_receive
+Rcpp::String rcpp_mq_timed_receive(std::string name, long timeout_ms);
+RcppExport SEXP _interprocess_rcpp_mq_timed_receive(SEXP nameSEXP, SEXP timeout_msSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::string >::type name(nameSEXP);
+    Rcpp::traits::input_parameter< long >::type timeout_ms(timeout_msSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_mq_timed_receive(name, timeout_ms));
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_mq_get_max_msg
+std::size_t rcpp_mq_get_max_msg(std::string name);
+RcppExport SEXP _interprocess_rcpp_mq_get_max_msg(SEXP nameSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::string >::type name(nameSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_mq_get_max_msg(name));
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_mq_get_max_msg_size
+std::size_t rcpp_mq_get_max_msg_size(std::string name);
+RcppExport SEXP _interprocess_rcpp_mq_get_max_msg_size(SEXP nameSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::string >::type name(nameSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_mq_get_max_msg_size(name));
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_mq_get_num_msg
+std::size_t rcpp_mq_get_num_msg(std::string name);
+RcppExport SEXP _interprocess_rcpp_mq_get_num_msg(SEXP nameSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::string >::type name(nameSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_mq_get_num_msg(name));
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_mq_remove
+bool rcpp_mq_remove(std::string name);
+RcppExport SEXP _interprocess_rcpp_mq_remove(SEXP nameSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::string >::type name(nameSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_mq_remove(name));
+    return rcpp_result_gen;
+END_RCPP
+}
 // rcpp_mutex_create_only
 void rcpp_mutex_create_only(std::string name);
 RcppExport SEXP _interprocess_rcpp_mutex_create_only(SEXP nameSEXP) {
@@ -141,158 +293,6 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// rcpp_queue_create_only
-void rcpp_queue_create_only(std::string name, size_t max_num_msg, size_t max_msg_size);
-RcppExport SEXP _interprocess_rcpp_queue_create_only(SEXP nameSEXP, SEXP max_num_msgSEXP, SEXP max_msg_sizeSEXP) {
-BEGIN_RCPP
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< std::string >::type name(nameSEXP);
-    Rcpp::traits::input_parameter< size_t >::type max_num_msg(max_num_msgSEXP);
-    Rcpp::traits::input_parameter< size_t >::type max_msg_size(max_msg_sizeSEXP);
-    rcpp_queue_create_only(name, max_num_msg, max_msg_size);
-    return R_NilValue;
-END_RCPP
-}
-// rcpp_queue_open_only
-void rcpp_queue_open_only(std::string name);
-RcppExport SEXP _interprocess_rcpp_queue_open_only(SEXP nameSEXP) {
-BEGIN_RCPP
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< std::string >::type name(nameSEXP);
-    rcpp_queue_open_only(name);
-    return R_NilValue;
-END_RCPP
-}
-// rcpp_queue_open_create
-void rcpp_queue_open_create(std::string name, size_t max_num_msg, size_t max_msg_size);
-RcppExport SEXP _interprocess_rcpp_queue_open_create(SEXP nameSEXP, SEXP max_num_msgSEXP, SEXP max_msg_sizeSEXP) {
-BEGIN_RCPP
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< std::string >::type name(nameSEXP);
-    Rcpp::traits::input_parameter< size_t >::type max_num_msg(max_num_msgSEXP);
-    Rcpp::traits::input_parameter< size_t >::type max_msg_size(max_msg_sizeSEXP);
-    rcpp_queue_open_create(name, max_num_msg, max_msg_size);
-    return R_NilValue;
-END_RCPP
-}
-// rcpp_queue_send
-bool rcpp_queue_send(std::string name, std::string msg, unsigned int priority);
-RcppExport SEXP _interprocess_rcpp_queue_send(SEXP nameSEXP, SEXP msgSEXP, SEXP prioritySEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< std::string >::type name(nameSEXP);
-    Rcpp::traits::input_parameter< std::string >::type msg(msgSEXP);
-    Rcpp::traits::input_parameter< unsigned int >::type priority(prioritySEXP);
-    rcpp_result_gen = Rcpp::wrap(rcpp_queue_send(name, msg, priority));
-    return rcpp_result_gen;
-END_RCPP
-}
-// rcpp_queue_try_send
-bool rcpp_queue_try_send(std::string name, std::string msg, unsigned int priority);
-RcppExport SEXP _interprocess_rcpp_queue_try_send(SEXP nameSEXP, SEXP msgSEXP, SEXP prioritySEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< std::string >::type name(nameSEXP);
-    Rcpp::traits::input_parameter< std::string >::type msg(msgSEXP);
-    Rcpp::traits::input_parameter< unsigned int >::type priority(prioritySEXP);
-    rcpp_result_gen = Rcpp::wrap(rcpp_queue_try_send(name, msg, priority));
-    return rcpp_result_gen;
-END_RCPP
-}
-// rcpp_queue_timed_send
-bool rcpp_queue_timed_send(std::string name, std::string msg, unsigned int priority, long timeout_ms);
-RcppExport SEXP _interprocess_rcpp_queue_timed_send(SEXP nameSEXP, SEXP msgSEXP, SEXP prioritySEXP, SEXP timeout_msSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< std::string >::type name(nameSEXP);
-    Rcpp::traits::input_parameter< std::string >::type msg(msgSEXP);
-    Rcpp::traits::input_parameter< unsigned int >::type priority(prioritySEXP);
-    Rcpp::traits::input_parameter< long >::type timeout_ms(timeout_msSEXP);
-    rcpp_result_gen = Rcpp::wrap(rcpp_queue_timed_send(name, msg, priority, timeout_ms));
-    return rcpp_result_gen;
-END_RCPP
-}
-// rcpp_queue_receive
-Rcpp::String rcpp_queue_receive(std::string name);
-RcppExport SEXP _interprocess_rcpp_queue_receive(SEXP nameSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< std::string >::type name(nameSEXP);
-    rcpp_result_gen = Rcpp::wrap(rcpp_queue_receive(name));
-    return rcpp_result_gen;
-END_RCPP
-}
-// rcpp_queue_try_receive
-Rcpp::String rcpp_queue_try_receive(std::string name);
-RcppExport SEXP _interprocess_rcpp_queue_try_receive(SEXP nameSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< std::string >::type name(nameSEXP);
-    rcpp_result_gen = Rcpp::wrap(rcpp_queue_try_receive(name));
-    return rcpp_result_gen;
-END_RCPP
-}
-// rcpp_queue_timed_receive
-Rcpp::String rcpp_queue_timed_receive(std::string name, long timeout_ms);
-RcppExport SEXP _interprocess_rcpp_queue_timed_receive(SEXP nameSEXP, SEXP timeout_msSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< std::string >::type name(nameSEXP);
-    Rcpp::traits::input_parameter< long >::type timeout_ms(timeout_msSEXP);
-    rcpp_result_gen = Rcpp::wrap(rcpp_queue_timed_receive(name, timeout_ms));
-    return rcpp_result_gen;
-END_RCPP
-}
-// rcpp_queue_get_max_msg
-std::size_t rcpp_queue_get_max_msg(std::string name);
-RcppExport SEXP _interprocess_rcpp_queue_get_max_msg(SEXP nameSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< std::string >::type name(nameSEXP);
-    rcpp_result_gen = Rcpp::wrap(rcpp_queue_get_max_msg(name));
-    return rcpp_result_gen;
-END_RCPP
-}
-// rcpp_queue_get_max_msg_size
-std::size_t rcpp_queue_get_max_msg_size(std::string name);
-RcppExport SEXP _interprocess_rcpp_queue_get_max_msg_size(SEXP nameSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< std::string >::type name(nameSEXP);
-    rcpp_result_gen = Rcpp::wrap(rcpp_queue_get_max_msg_size(name));
-    return rcpp_result_gen;
-END_RCPP
-}
-// rcpp_queue_get_num_msg
-std::size_t rcpp_queue_get_num_msg(std::string name);
-RcppExport SEXP _interprocess_rcpp_queue_get_num_msg(SEXP nameSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< std::string >::type name(nameSEXP);
-    rcpp_result_gen = Rcpp::wrap(rcpp_queue_get_num_msg(name));
-    return rcpp_result_gen;
-END_RCPP
-}
-// rcpp_queue_remove
-bool rcpp_queue_remove(std::string name);
-RcppExport SEXP _interprocess_rcpp_queue_remove(SEXP nameSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< std::string >::type name(nameSEXP);
-    rcpp_result_gen = Rcpp::wrap(rcpp_queue_remove(name));
-    return rcpp_result_gen;
-END_RCPP
-}
 // rcpp_sem_create_only
 void rcpp_sem_create_only(std::string name, unsigned int initial_count);
 RcppExport SEXP _interprocess_rcpp_sem_create_only(SEXP nameSEXP, SEXP initial_countSEXP) {
@@ -407,6 +407,19 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
+    {"_interprocess_rcpp_mq_create_only", (DL_FUNC) &_interprocess_rcpp_mq_create_only, 3},
+    {"_interprocess_rcpp_mq_open_only", (DL_FUNC) &_interprocess_rcpp_mq_open_only, 1},
+    {"_interprocess_rcpp_mq_open_create", (DL_FUNC) &_interprocess_rcpp_mq_open_create, 3},
+    {"_interprocess_rcpp_mq_send", (DL_FUNC) &_interprocess_rcpp_mq_send, 3},
+    {"_interprocess_rcpp_mq_try_send", (DL_FUNC) &_interprocess_rcpp_mq_try_send, 3},
+    {"_interprocess_rcpp_mq_timed_send", (DL_FUNC) &_interprocess_rcpp_mq_timed_send, 4},
+    {"_interprocess_rcpp_mq_receive", (DL_FUNC) &_interprocess_rcpp_mq_receive, 1},
+    {"_interprocess_rcpp_mq_try_receive", (DL_FUNC) &_interprocess_rcpp_mq_try_receive, 1},
+    {"_interprocess_rcpp_mq_timed_receive", (DL_FUNC) &_interprocess_rcpp_mq_timed_receive, 2},
+    {"_interprocess_rcpp_mq_get_max_msg", (DL_FUNC) &_interprocess_rcpp_mq_get_max_msg, 1},
+    {"_interprocess_rcpp_mq_get_max_msg_size", (DL_FUNC) &_interprocess_rcpp_mq_get_max_msg_size, 1},
+    {"_interprocess_rcpp_mq_get_num_msg", (DL_FUNC) &_interprocess_rcpp_mq_get_num_msg, 1},
+    {"_interprocess_rcpp_mq_remove", (DL_FUNC) &_interprocess_rcpp_mq_remove, 1},
     {"_interprocess_rcpp_mutex_create_only", (DL_FUNC) &_interprocess_rcpp_mutex_create_only, 1},
     {"_interprocess_rcpp_mutex_open_only", (DL_FUNC) &_interprocess_rcpp_mutex_open_only, 1},
     {"_interprocess_rcpp_mutex_open_create", (DL_FUNC) &_interprocess_rcpp_mutex_open_create, 1},
@@ -419,19 +432,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"_interprocess_rcpp_mutex_try_lock_sharable", (DL_FUNC) &_interprocess_rcpp_mutex_try_lock_sharable, 1},
     {"_interprocess_rcpp_mutex_timed_lock_sharable", (DL_FUNC) &_interprocess_rcpp_mutex_timed_lock_sharable, 2},
     {"_interprocess_rcpp_mutex_unlock_sharable", (DL_FUNC) &_interprocess_rcpp_mutex_unlock_sharable, 1},
-    {"_interprocess_rcpp_queue_create_only", (DL_FUNC) &_interprocess_rcpp_queue_create_only, 3},
-    {"_interprocess_rcpp_queue_open_only", (DL_FUNC) &_interprocess_rcpp_queue_open_only, 1},
-    {"_interprocess_rcpp_queue_open_create", (DL_FUNC) &_interprocess_rcpp_queue_open_create, 3},
-    {"_interprocess_rcpp_queue_send", (DL_FUNC) &_interprocess_rcpp_queue_send, 3},
-    {"_interprocess_rcpp_queue_try_send", (DL_FUNC) &_interprocess_rcpp_queue_try_send, 3},
-    {"_interprocess_rcpp_queue_timed_send", (DL_FUNC) &_interprocess_rcpp_queue_timed_send, 4},
-    {"_interprocess_rcpp_queue_receive", (DL_FUNC) &_interprocess_rcpp_queue_receive, 1},
-    {"_interprocess_rcpp_queue_try_receive", (DL_FUNC) &_interprocess_rcpp_queue_try_receive, 1},
-    {"_interprocess_rcpp_queue_timed_receive", (DL_FUNC) &_interprocess_rcpp_queue_timed_receive, 2},
-    {"_interprocess_rcpp_queue_get_max_msg", (DL_FUNC) &_interprocess_rcpp_queue_get_max_msg, 1},
-    {"_interprocess_rcpp_queue_get_max_msg_size", (DL_FUNC) &_interprocess_rcpp_queue_get_max_msg_size, 1},
-    {"_interprocess_rcpp_queue_get_num_msg", (DL_FUNC) &_interprocess_rcpp_queue_get_num_msg, 1},
-    {"_interprocess_rcpp_queue_remove", (DL_FUNC) &_interprocess_rcpp_queue_remove, 1},
     {"_interprocess_rcpp_sem_create_only", (DL_FUNC) &_interprocess_rcpp_sem_create_only, 2},
     {"_interprocess_rcpp_sem_open_only", (DL_FUNC) &_interprocess_rcpp_sem_open_only, 1},
     {"_interprocess_rcpp_sem_open_create", (DL_FUNC) &_interprocess_rcpp_sem_open_create, 2},
