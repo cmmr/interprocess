@@ -1,5 +1,4 @@
 useDynLib(interprocess, .registration = TRUE)
-import(Rcpp)
 
 export(`mutex`)
 export(`msg_queue`)
