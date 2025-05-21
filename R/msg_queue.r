@@ -108,9 +108,9 @@ msg_queue <- function (name = uid(), assert = NULL, max_count = 100, max_nchar =
     error = function (e) open_error('message queue', name, assert, e),
     expr  = switch(
       EXPR = assert,
-      'create' = rcpp_mq_create_only(name, max_count, max_nchar),
-      'exists' = rcpp_mq_open_only(name),
-      'NULL'   = rcpp_mq_open_create(name, max_count, max_nchar) ))
+      'create' = cpp_mq_create_only(name, max_count, max_nchar),
+      'exists' = cpp_mq_open_only(name),
+      'NULL'   = cpp_mq_open_create(name, max_count, max_nchar) ))
   
   if (isTRUE(cleanup))
     ENV$msg_queues <- c(ENV$msg_queues, name)
@@ -168,9 +168,9 @@ mq_send <- function (name, msg, timeout_ms = Inf, priority = 0) {
   
   switch(
     EXPR = as.character(timeout_ms),
-    'Inf' = invisible(rcpp_mq_send(name, msg, priority)),
-    '0'   = rcpp_mq_try_send(name, msg, priority),
-    rcpp_mq_timed_send(name, msg, priority, timeout_ms) )
+    'Inf' = invisible(cpp_mq_send(name, msg, priority)),
+    '0'   = cpp_mq_try_send(name, msg, priority),
+    cpp_mq_timed_send(name, msg, priority, timeout_ms) )
 }
 
 
@@ -178,35 +178,33 @@ mq_receive <- function (name, timeout_ms = Inf) {
   
   timeout_ms <- validate_timeout(timeout_ms, 'message queue')
   
-  msg <- switch(
+  switch(
     EXPR = as.character(timeout_ms),
-    'Inf' = rcpp_mq_receive(name),
-    '0'   = rcpp_mq_try_receive(name),
-    rcpp_mq_timed_receive(name, timeout_ms) )
-  
-  if (is.na(msg)) NULL else msg
+    'Inf' = cpp_mq_receive(name),
+    '0'   = cpp_mq_try_receive(name),
+    cpp_mq_timed_receive(name, timeout_ms) )
 }
 
 
 mq_count <- function (name) {
-  size_t <- rcpp_mq_get_num_msg(name)
+  size_t <- cpp_mq_get_num_msg(name)
   as.integer(size_t)
 }
 
 
 mq_max_count <- function (name) {
-  size_t <- rcpp_mq_get_max_msg(name)
+  size_t <- cpp_mq_get_max_msg(name)
   as.integer(size_t)
 }
 
 
 mq_max_nchar <- function (name) {
-  size_t <- rcpp_mq_get_max_msg_size(name)
+  size_t <- cpp_mq_get_max_msg_size(name)
   as.integer(size_t)
 }
 
 
 mq_remove <- function (name) {
   ENV$msg_queues <- setdiff(ENV$msg_queues, name)
-  invisible(rcpp_mq_remove(name))
+  invisible(cpp_mq_remove(name))
 }

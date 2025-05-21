@@ -1,8 +1,8 @@
 Package: interprocess
 Type: Package
 Title: Mutexes, Semaphores, and Message Queues
-Version: 1.2.0
-Date: 2025-05-16
+Version: 1.2.1
+Date: 2025-05-21
 Authors@R: c(
     person(
       "Daniel P.", "Smith",
@@ -28,10 +28,8 @@ Roxygen: list(markdown = TRUE)
 Config/testthat/edition: 3
 Config/Needs/website: rmarkdown
 LinkingTo:
-    Rcpp,
-    BH
-Imports:
-    Rcpp
+    BH,
+    cpp11
 Suggests:
     callr,
     testthat

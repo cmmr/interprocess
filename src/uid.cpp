@@ -1,12 +1,10 @@
-// [[Rcpp::depends(BH)]]
-
-#include <Rcpp.h>
+#include <cpp11.hpp>
 #include <string.h>
 #include <stdint.h> // uint64_t
 
 
-// [[Rcpp::export]]
-Rcpp::String rcpp_base62(uint64_t value, uint64_t hundredth, int bytes) {
+[[cpp11::register]]
+std::string cpp_base62(uint64_t value, uint64_t hundredth, int bytes) {
   
   std::string result = "";
   
@@ -27,8 +25,8 @@ Rcpp::String rcpp_base62(uint64_t value, uint64_t hundredth, int bytes) {
 }
 
 
-// [[Rcpp::export]]
-Rcpp::String rcpp_hash(std::string str) {
+[[cpp11::register]]
+std::string cpp_hash(std::string str) {
   std::hash<std::string> hash_string;
-  return rcpp_base62(hash_string(str), 0, 11);
+  return cpp_base62(hash_string(str), 0, 11);
 }

@@ -122,9 +122,9 @@ mutex <- function (name = uid(), assert = NULL, cleanup = FALSE, file = NULL) {
     error = function (e) open_error('mutex', name, assert, e),
     expr  = switch(
       EXPR = assert,
-      'create' = rcpp_mutex_create_only(name),
-      'exists' = rcpp_mutex_open_only(name),
-      'NULL'   = rcpp_mutex_open_create(name) ))
+      'create' = cpp_mutex_create_only(name),
+      'exists' = cpp_mutex_open_only(name),
+      'NULL'   = cpp_mutex_open_create(name) ))
   
   if (isTRUE(cleanup))
     ENV$mutexes <- c(ENV$mutexes, name)
@@ -174,9 +174,9 @@ mutex_lock <- function (name, shared = FALSE, timeout_ms = Inf) {
     
     success <- switch(
       EXPR = as.character(timeout_ms),
-      'Inf' = rcpp_mutex_lock_sharable(name), # always TRUE
-      '0'   = rcpp_mutex_try_lock_sharable(name),
-      rcpp_mutex_timed_lock_sharable(name, timeout_ms) )
+      'Inf' = cpp_mutex_lock_sharable(name), # always TRUE
+      '0'   = cpp_mutex_try_lock_sharable(name),
+      cpp_mutex_timed_lock_sharable(name, timeout_ms) )
     
     if (isTRUE(success))
       ENV$shared_locks <- c(ENV$shared_locks, name)
@@ -189,9 +189,9 @@ mutex_lock <- function (name, shared = FALSE, timeout_ms = Inf) {
     
     success <- switch(
       EXPR = as.character(timeout_ms),
-      'Inf' = rcpp_mutex_lock(name), # always TRUE
-      '0'   = rcpp_mutex_try_lock(name),
-      rcpp_mutex_timed_lock(name, timeout_ms) )
+      'Inf' = cpp_mutex_lock(name), # always TRUE
+      '0'   = cpp_mutex_try_lock(name),
+      cpp_mutex_timed_lock(name, timeout_ms) )
     
     if (isTRUE(success))
       ENV$excl_locks <- c(ENV$excl_locks, name)
@@ -205,12 +205,12 @@ mutex_unlock <- function (name, warn = TRUE) {
   
   if (name %in% ENV$excl_locks) {
     ENV$excl_locks <- setdiff(ENV$excl_locks, name)
-    rcpp_mutex_unlock(name)  # always TRUE
+    cpp_mutex_unlock(name)  # always TRUE
   }
   
   else if (name %in% ENV$shared_locks) {
     ENV$shared_locks <- setdiff(ENV$shared_locks, name)
-    rcpp_mutex_unlock_sharable(name)  # always TRUE
+    cpp_mutex_unlock_sharable(name)  # always TRUE
   }
   
   else {
@@ -224,7 +224,7 @@ mutex_unlock <- function (name, warn = TRUE) {
 
 mutex_remove <- function (name) {
   ENV$mutexes <- setdiff(ENV$mutexes, name)
-  invisible(rcpp_mutex_remove(name))
+  invisible(cpp_mutex_remove(name))
 }
 
 

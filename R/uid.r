@@ -49,7 +49,7 @@ uid <- function () {
   
   paste(collapse = '', c(
     ENV$pid_base62,
-    rcpp_base62(start_time, ENV$uids_made, 7) ))
+    base62(start_time, ENV$uids_made, 7) ))
 }
 
 
@@ -60,6 +60,13 @@ uid <- function () {
 hash <- function (str) {
   str <- as.character(str)
   stopifnot(isTRUE(!is.na(str)))
-  rcpp_hash(str)
+  cpp_hash(str)
 }
 
+
+base62 <- function (value, hundredth, bytes) {
+  cpp_base62(
+    as.integer(value), 
+    as.integer(hundredth), 
+    as.integer(bytes) )
+}

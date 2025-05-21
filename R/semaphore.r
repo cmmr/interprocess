@@ -94,9 +94,9 @@ semaphore <- function (name = uid(), assert = NULL, value = 0, cleanup = FALSE, 
     error = function (e) open_error('semaphore', name, assert, e),
     expr  = switch(
       EXPR = assert,
-      'create' = rcpp_sem_create_only(name, value),
-      'exists' = rcpp_sem_open_only(name),
-      'NULL'   = rcpp_sem_open_create(name, value) ))
+      'create' = cpp_sem_create_only(name, value),
+      'exists' = cpp_sem_open_only(name),
+      'NULL'   = cpp_sem_open_create(name, value) ))
   
   
   if (isTRUE(cleanup))
@@ -127,7 +127,7 @@ with.semaphore <- function (data, expr, alt_expr = NULL, timeout_ms = Inf, ...) 
 
 
 sem_post <- function (name) {
-  invisible(rcpp_sem_post(name)) # always TRUE
+  invisible(cpp_sem_post(name)) # always TRUE
 }
 
 
@@ -137,14 +137,14 @@ sem_wait <- function (name, timeout_ms = Inf) {
   
   switch(
     EXPR = as.character(timeout_ms),
-    'Inf' = invisible(rcpp_sem_wait(name)), # always TRUE
-    '0'   = rcpp_sem_try_wait(name),
-    rcpp_sem_timed_wait(name, timeout_ms) )
+    'Inf' = invisible(cpp_sem_wait(name)), # always TRUE
+    '0'   = cpp_sem_try_wait(name),
+    cpp_sem_timed_wait(name, timeout_ms) )
 }
 
 
 sem_remove <- function (name) {
   ENV$semaphores <- setdiff(ENV$semaphores, name)
-  invisible(rcpp_sem_remove(name))
+  invisible(cpp_sem_remove(name))
 }
 

@@ -1,3 +1,8 @@
+# interprocess 1.2.1
+
+* Switched from `Rcpp` to `cpp11`.
+
+
 # interprocess 1.2.0
 
 * Renamed `queue()` to `msg_queue()`.
