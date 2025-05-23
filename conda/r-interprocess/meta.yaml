@@ -1,4 +1,4 @@
-{% set version = '1.2.0' %}
+{% set version = '1.3.0' %}
 {% set posix = 'm2-' if win else '' %}
 
 package:
@@ -9,7 +9,7 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/interprocess_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/interprocess/interprocess_{{ version }}.tar.gz
-  sha256: ddcc7ba305f1941fb0d58013916fcea62bd702ea18d4f13fd1fc148f10b5e887
+  sha256: 2ae56f966bb48f5dc69ec0cdb9a108cd1f6bcc4e3c296cf0541a291b01cd6da2
 
 build:
   number: 0
@@ -69,8 +69,8 @@ extra:
 # Package: interprocess
 # Type: Package
 # Title: Mutexes, Semaphores, and Message Queues
-# Version: 1.2.0
-# Date: 2025-05-16
+# Version: 1.3.0
+# Date: 2025-05-23
 # Authors@R: c( person( "Daniel P.", "Smith", email   = "dansmith01@gmail.com", role    = c("aut", "cre"), comment = c(ORCID = "0000-0002-2479-2044")), person( "Alkek Center for Metagenomics and Microbiome Research", role = c("cph", "fnd") ))
 # Description: Provides access to low-level operating system mechanisms for performing atomic operations on shared data structures. Mutexes provide shared and exclusive locks. Semaphores act as counters. Message queues move text strings from one process to another. All these interprocess communication (IPC) tools can optionally block with or without a timeout. Implemented using the cross-platform 'boost' 'C++' library <https://www.boost.org/doc/libs/release/libs/interprocess/>.
 # URL: https://cmmr.github.io/interprocess/, https://github.com/cmmr/interprocess
@@ -80,12 +80,11 @@ extra:
 # RoxygenNote: 7.3.2
 # Config/testthat/edition: 3
 # Config/Needs/website: rmarkdown
-# LinkingTo: Rcpp, BH
-# Imports: Rcpp
+# LinkingTo: cpp11, BH
 # Suggests: callr, testthat
 # NeedsCompilation: yes
-# Packaged: 2025-05-16 15:49:41 UTC; Daniel
+# Packaged: 2025-05-23 17:00:02 UTC; Daniel
 # Author: Daniel P. Smith [aut, cre] (ORCID: <https://orcid.org/0000-0002-2479-2044>), Alkek Center for Metagenomics and Microbiome Research [cph, fnd]
 # Maintainer: Daniel P. Smith <dansmith01@gmail.com>
 # Repository: CRAN
-# Date/Publication: 2025-05-16 16:30:02 UTC
+# Date/Publication: 2025-05-23 17:52:05 UTC
