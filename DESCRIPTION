@@ -2,7 +2,7 @@ Package: interprocess
 Type: Package
 Title: Mutexes, Semaphores, and Message Queues
 Version: 1.2.1
-Date: 2025-05-21
+Date: 2025-05-23
 Authors@R: c(
     person(
       "Daniel P.", "Smith",
@@ -28,8 +28,8 @@ Roxygen: list(markdown = TRUE)
 Config/testthat/edition: 3
 Config/Needs/website: rmarkdown
 LinkingTo:
-    BH,
-    cpp11
+    cpp11,
+    BH
 Suggests:
     callr,
     testthat

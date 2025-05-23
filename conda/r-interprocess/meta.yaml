@@ -37,11 +37,11 @@ requirements:
   host:
     - r-base
     - r-bh
-    - r-rcpp
+    - r-cpp11
   run:
     - r-base
     - r-bh
-    - r-rcpp
+    - r-cpp11
 
 test:
   commands:

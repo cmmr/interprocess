@@ -1,4 +1,4 @@
-# interprocess 1.2.1
+# interprocess 1.3.0
 
 * Switched from `Rcpp` to `cpp11`.
 
