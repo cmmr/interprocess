@@ -1,7 +1,7 @@
 Package: interprocess
 Type: Package
 Title: Mutexes, Semaphores, and Message Queues
-Version: 1.2.1
+Version: 1.3.0
 Date: 2025-05-23
 Authors@R: c(
     person(
