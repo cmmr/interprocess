@@ -2,7 +2,7 @@ pandoc: 3.1.11
 pkgdown: 2.1.2
 pkgdown_sha: ~
 articles: {}
-last_built: 2025-05-21T21:08Z
+last_built: 2025-05-23T16:48Z
 urls:
   reference: https://cmmr.github.io/interprocess/reference
   article: https://cmmr.github.io/interprocess/articles
