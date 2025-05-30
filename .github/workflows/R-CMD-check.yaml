@@ -34,7 +34,6 @@ jobs:
           - {os: windows-latest,   r: 'release'}
           - {os: windows-latest,   r: 'oldrel-1'}
           - {os: windows-latest,   r: '3.6.3'}
-          - {os: windows-2019,     r: 'release'}
           - {os: windows-2025,     r: 'release'}
 
           - {os: ubuntu-latest,    r: 'devel' }
