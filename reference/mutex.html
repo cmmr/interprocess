@@ -13,7 +13,7 @@ example to update the contents of a database file. While an exclusive lock
 is active, no other exclusive or shared locks will be granted.
 Multiple shared locks can be held by different processes at the same
 time, for example to read a database file. While a shared lock is active, no
-exclusive locks will be granted."></head><body>
+exclusive locks will be granted."><meta property="og:image" content="https://cmmr.github.io/interprocess/logo.png"></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
@@ -41,8 +41,7 @@ exclusive locks will be granted."></head><body>
 </nav><div class="container template-reference-topic">
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
-
-      <h1>Shared and Exclusive Locks</h1>
+      <img src="../logo.png" class="logo" alt=""><h1>Shared and Exclusive Locks</h1>
       <small class="dont-index">Source: <a href="https://github.com/cmmr/interprocess/blob/master/R/mutex.r" class="external-link"><code>R/mutex.r</code></a></small>
       <div class="d-none name"><code>mutex.Rd</code></div>
     </div>
@@ -168,7 +167,7 @@ attempt to acquire a second lock on the same mutex.</p>
 <span class="r-in"><span><span class="va">mut</span> <span class="op">&lt;-</span> <span class="fu">interprocess</span><span class="fu">::</span><span class="fu">mutex</span><span class="op">(</span>file <span class="op">=</span> <span class="va">tmp</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">mut</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;mutex&gt; "c3EXQP5GB8p"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;mutex&gt; "agT9F653ysq"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Exclusive lock to write the file</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">mut</span>, <span class="fu"><a href="https://rdrr.io/r/base/writeLines.html" class="external-link">writeLines</a></span><span class="op">(</span><span class="st">'some data'</span>, <span class="va">tmp</span><span class="op">)</span><span class="op">)</span></span></span>
