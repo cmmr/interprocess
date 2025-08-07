@@ -1,20 +1,15 @@
 
 library(ggplot2)
-library(ggpattern)
 library(magick)
-library(magrittr)
 
 ggplot() + 
-  geom_polygon_pattern(
+  geom_polygon(
     mapping = aes(
-      x = 1200 * sqrt(3)/2 * c(0, 1, 1, 0, -1, -1), 
-      y = 1200 * .5 * c(2, 1, -1, -2, -1, 1) ),
-    pattern          = 'image',
-    pattern_type     = 'fit',
-    pattern_filename = 'logo/cartoon.png',
-    color            = 'black',
-    fill             = 'white',
-    linewidth        = 4 ) + 
+      x = 1000 * sqrt(3)/2 * c(0, 1, 1, 0, -1, -1), 
+      y = 1000 * .5 * c(2, 1, -1, -2, -1, 1) ),
+    color     = '#0078a5',
+    fill      = 'white',
+    linewidth = 6 ) + 
   coord_fixed(ratio = 1) +
   theme_void() +
   theme(rect = element_rect(fill = 'transparent')) +
@@ -22,10 +17,14 @@ ggplot() +
     geom   = 'text', 
     label  = 'interprocess',
     family = 'Brownland',
-    size   = 22,
+    color  = '#181a1b',
+    size   = 20,
     x      = 0, 
-    y      = 550 )
-
+    y      = 470 ) +
+  annotation_raster(
+    raster = image_read('logo/cartoon.png'),
+    xmin = -775, xmax = 775,
+    ymin = -610, ymax = 262 )
 
 
 ggsave(
@@ -38,16 +37,7 @@ ggsave(
   units    = 'px',
   bg       = 'transparent' )
 
-
-# pkgdown website sets logo width to 120px
-image_read('logo/interprocess.png') %>%
-  image_trim() %>%
-  image_resize('120x') %>%
+image_read('logo/interprocess.png') |>
+  image_trim() |>
+  image_resize('x200') |>
   image_write('man/figures/logo.png')
-
-
-# height = 200px (150pt) for joss paper
-image_read('logo/interprocess.png') %>%
-  image_trim() %>%
-  image_resize('x200') %>%
-  image_write('joss/figures/logo.png')
