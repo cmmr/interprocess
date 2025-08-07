@@ -3,8 +3,10 @@
 <!-- badges: start -->
 [![cran](https://www.r-pkg.org/badges/version/interprocess)](https://CRAN.R-project.org/package=interprocess)
 [![conda](https://anaconda.org/conda-forge/r-interprocess/badges/version.svg)](https://anaconda.org/conda-forge/r-interprocess)
+<!--
 [![downloads](https://cranlogs.r-pkg.org/badges/grand-total/interprocess)](https://cranlogs.r-pkg.org/)
 [![dev](https://github.com/cmmr/interprocess/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/cmmr/interprocess/actions/workflows/R-CMD-check.yaml)
+-->
 [![covr](https://codecov.io/gh/cmmr/interprocess/graph/badge.svg)](https://app.codecov.io/gh/cmmr/interprocess)
 <!-- badges: end -->
 
