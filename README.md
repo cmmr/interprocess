@@ -1,4 +1,4 @@
-# interprocess <img src="man/figures/logo.png" align="right" width="120" alt="interprocess logo" />
+# interprocess <img src="man/figures/logo.png" align="right" width="174" height="200" alt="interprocess logo" />
 
 <!-- badges: start -->
 [![cran](https://www.r-pkg.org/badges/version/interprocess)](https://CRAN.R-project.org/package=interprocess)
